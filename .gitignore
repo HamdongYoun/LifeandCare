@@ -1,0 +1,28 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+ios/.generated/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+android/app/src/main/res/drawable-xhdpi/launch_background.png
+android/app/src/main/res/drawable-xhdpi/launch_image.png
+
+# Security & Secrets
+.security/
+.env*
+*.key
+*.p12
+*.jks
+*.keystore
+
+# IDEs
+.idea/
+.vscode/
+
+# Local Docs (optional)
+# .docs/
+# .coredocs/
+# .rags/
