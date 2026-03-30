@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Naver Map Auth Test</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rcd2b6qixk"></script>
+    <style>
+        body { margin: 0; }
+        #map { width: 100vw; height: 100vh; }
+        #status {
+            position: fixed; top: 10px; left: 10px; z-index: 9999;
+            background: white; padding: 10px 16px; border-radius: 8px;
+            font-size: 14px; font-family: monospace;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="status">⏳ 초기화 중...</div>
+    <div id="map"></div>
+    <script>
+        window.onload = function() {
+            const status = document.getElementById('status');
+            try {
+                if (window.naver && window.naver.maps) {
+                    status.textContent = '✅ Naver SDK 로드됨 - 지도 생성 중...';
+                    status.style.color = 'green';
+
+                    const map = new naver.maps.Map('map', {
+                        center: new naver.maps.LatLng(37.5665, 126.9780),
+                        zoom: 14
+                    });
+
+                    setTimeout(() => {
+                        if (document.querySelector('.naver-maps-error-overlay')) {
+                            status.textContent = '❌ Auth Error: 지도 인증 실패 (Client ID 또는 도메인 불일치)';
+                            status.style.color = 'red';
+                        } else {
+                            status.textContent = '✅ 지도 렌더링 성공!';
+                            status.style.color = 'green';
+                        }
+                    }, 2000);
+                } else {
+                    status.textContent = '❌ Naver SDK 로드 실패 (script 차단됨)';
+                    status.style.color = 'red';
+                }
+            } catch(e) {
+                status.textContent = '❌ 에러: ' + e.message;
+                status.style.color = 'red';
+            }
+        };
+    </script>
+</body>
+</html>

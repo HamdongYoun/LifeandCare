@@ -26,3 +26,11 @@ android/app/src/main/res/drawable-xhdpi/launch_image.png
 # .docs/
 # .coredocs/
 # .rags/
+
+# Python & Temporary Files
+__pycache__/
+*.pyc
+.pytest_cache/
+tmp/
+node_modules/
+dist/
