@@ -1,0 +1,100 @@
+﻿table.dart:103:3)
+           <asynchronous s
+uspension>
+
+[  +23 ms] Compiling lib\main.dart for the Web... (completed in 10.1s)
+[        ] "flutter web" took 10,602ms.
+[  +79 ms] Error: Failed t
+o compile application for 
+the Web.
+[        ] 
+           #0      throwTo
+olExit (package:flutter_to
+ols/src/base/common.dart:3
+4:3)
+           #1      WebBuil
+der.buildWeb (package:flut
+ter_tools/src/web/compile.
+dart:152:7)
+           <asynchronous s
+uspension>
+           #2      BuildWe
+bCommand.runCommand (packa
+ge:flutter_tools/src/comma
+nds/build_web.dart:300:5)
+           <asynchronous s
+uspension>
+           #3      Flutter
+Command.run.<anonymous clo
+sure> (package:flutter_too
+ls/src/runner/flutter_comm
+and.dart:1590:27)
+           <asynchronous s
+uspension>
+           #4      AppCont
+ext.run.<anonymous closure
+> (package:flutter_tools/s
+rc/base/context.dart:154:1
+9)
+           <asynchronous s
+uspension>
+           #5      Command
+Runner.runCommand (package
+:args/command_runner.dart:
+212:13)
+           <asynchronous s
+uspension>
+           #6      Flutter
+CommandRunner.runCommand.<
+anonymous closure> (packag
+e:flutter_tools/src/runner
+/flutter_command_runner.da
+rt:496:9)
+           <asynchronous s
+uspension>
+           #7      AppCont
+ext.run.<anonymous closure
+> (package:flutter_tools/s
+rc/base/context.dart:154:1
+9)
+           <asynchronous s
+uspension>
+           #8      Flutter
+CommandRunner.runCommand (
+package:flutter_tools/src/
+runner/flutter_command_run
+ner.dart:431:5)
+           <asynchronous s
+uspension>
+           #9      Flutter
+CommandRunner.run.<anonymo
+us closure> (package:flutt
+er_tools/src/runner/flutte
+r_command_runner.dart:307:
+33)
+           <asynchronous s
+uspension>
+           #10     run.<an
+onymous closure>.<anonymou
+s closure> (package:flutte
+r_tools/runner.dart:104:11
+)
+           <asynchronous s
+uspension>
+           #11     AppCont
+ext.run.<anonymous closure
+> (package:flutter_tools/s
+rc/base/context.dart:154:1
+9)
+           <asynchronous s
+uspension>
+           #12     main (p
+ackage:flutter_tools/execu
+table.dart:103:3)
+           <asynchronous s
+uspension>
+
+
+[        ] Running 1 shutdown hook
+[   +1 ms] Shutdown hooks complete
+[ +150 ms] exiting with code 1

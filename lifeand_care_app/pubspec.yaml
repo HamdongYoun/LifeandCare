@@ -1,0 +1,31 @@
+name: lifeand_care_app
+description: "Life & Care - Multi-platform Medical Consultation App (Dart-based Vertical Slice)"
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.5+1
+  http: ^1.6.0
+  geolocator: ^14.0.2
+  google_maps_flutter: ^2.17.0
+  intl: ^0.19.0
+  font_awesome_flutter: ^11.0.0
+  shared_preferences: ^2.5.5
+  url_launcher: ^6.3.2
+  google_fonts: ^8.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - assets/images/

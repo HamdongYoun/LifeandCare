@@ -1,0 +1,200 @@
+﻿Analyzing lifeand_care_app...                                   
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\app_theme.dart:25:25 - deprecated_member_use
+  error - The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'.  - lib\core\app_theme.dart:43:16 - argument_type_not_assignable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\status_indicator.dart:59:55 - deprecated_member_use
+  error - Expected to find ';' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:8 - expected_token
+  error - Illegal character '50508' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:17 - illegal_character
+  error - Undefined class '?? - lib\core\ui\footer\main_bottom_nav_bar.dart:2:17 - undefined_class
+  error - Expected to find ';' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:19 - expected_token
+  error - Illegal character '49688' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:19 - illegal_character
+  error - Expected to find ';' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:21 - expected_token
+  error - Illegal character '50630' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:21 - illegal_character
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\footer\main_bottom_nav_bar.dart:2:21 - missing_const_final_var_or_type
+  error - Illegal character '51020' - lib\core\ui\footer\main_bottom_nav_bar.dart:2:22 - illegal_character
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:2:23 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:2:27 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:2:28 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\footer\main_bottom_nav_bar.dart:3:43 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\footer\main_bottom_nav_bar.dart:3:43 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\footer\main_bottom_nav_bar.dart:3:45 - non_constant_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\footer\main_bottom_nav_bar.dart:3:76 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\footer\main_bottom_nav_bar.dart:3:76 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\core\ui\footer\main_bottom_nav_bar.dart:3:85 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:3:85 - expected_executable
+  error - The name 'BottomNavigationBarItem' is already defined - lib\core\ui\footer\main_bottom_nav_bar.dart:4:15 - duplicate_definition
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\footer\main_bottom_nav_bar.dart:4:43 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\footer\main_bottom_nav_bar.dart:4:43 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\footer\main_bottom_nav_bar.dart:4:45 - non_constant_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\footer\main_bottom_nav_bar.dart:4:82 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\footer\main_bottom_nav_bar.dart:4:82 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\core\ui\footer\main_bottom_nav_bar.dart:4:90 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:4:90 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:5:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:5:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:6:11 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:6:12 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:7:9 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:7:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:8:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:8:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:9:5 - expected_executable
+  error - Unexpected text ';' - lib\core\ui\footer\main_bottom_nav_bar.dart:9:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:10:3 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\footer\main_bottom_nav_bar.dart:11:1 - expected_executable
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:6:8 - expected_token
+  error - Illegal character '50508' - lib\core\ui\header\main_app_bar.dart:6:61 - illegal_character
+  error - Undefined class '?? - lib\core\ui\header\main_app_bar.dart:6:61 - undefined_class
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:6:63 - expected_token
+  error - Illegal character '49688' - lib\core\ui\header\main_app_bar.dart:6:63 - illegal_character
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:6:65 - expected_token
+  error - Illegal character '50630' - lib\core\ui\header\main_app_bar.dart:6:65 - illegal_character
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\header\main_app_bar.dart:6:65 - missing_const_final_var_or_type
+  error - Illegal character '51020' - lib\core\ui\header\main_app_bar.dart:6:66 - illegal_character
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:6:67 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:6:80 - expected_executable
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:7:9 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\header\main_app_bar.dart:7:9 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:7:14 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:7:36 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:7:36 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:7:60 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:7:60 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\header\main_app_bar.dart:7:62 - non_constant_default_value
+  error - A function body must be provided - lib\core\ui\header\main_app_bar.dart:7:80 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:7:80 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:8:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:8:8 - expected_executable
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:9:7 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\header\main_app_bar.dart:9:7 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:9:18 - expected_executable
+  error - 'true' can't be used as an identifier because it's a keyword - lib\core\ui\header\main_app_bar.dart:9:20 - expected_identifier_but_got_keyword
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\header\main_app_bar.dart:9:20 - missing_const_final_var_or_type
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:10:7 - expected_token
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:10:14 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:11:16 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:11:16 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\header\main_app_bar.dart:11:18 - non_constant_default_value
+  error - A function body must be provided - lib\core\ui\header\main_app_bar.dart:15:8 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:15:8 - expected_executable
+  error - Expected to find ';' - lib\core\ui\header\main_app_bar.dart:16:7 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\header\main_app_bar.dart:16:7 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:16:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:16:16 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:19:18 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:19:18 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\header\main_app_bar.dart:19:20 - non_constant_default_value
+  error - The named parameter 'fontSize' isn't defined - lib\core\ui\header\main_app_bar.dart:33:59 - undefined_named_parameter
+  error - A function body must be provided - lib\core\ui\header\main_app_bar.dart:38:10 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:38:10 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:40:15 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:40:15 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:41:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:41:20 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\header\main_app_bar.dart:41:22 - non_constant_default_value
+  error - A function body must be provided - lib\core\ui\header\main_app_bar.dart:42:10 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:42:10 - expected_executable
+  error - The name 'Consumer' is already defined - lib\core\ui\header\main_app_bar.dart:43:9 - duplicate_definition
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\header\main_app_bar.dart:44:18 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\header\main_app_bar.dart:44:18 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\header\main_app_bar.dart:44:20 - non_constant_default_value
+  error - A function body must be provided - lib\core\ui\header\main_app_bar.dart:64:10 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:64:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:65:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:65:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:66:5 - expected_executable
+  error - Unexpected text ';' - lib\core\ui\header\main_app_bar.dart:66:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:67:3 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\header\main_app_bar.dart:71:1 - expected_executable
+  error - Expected to find ';' - lib\core\ui\navigation\main_scaffold_shell.dart:11:8 - expected_token
+  error - Illegal character '50508' - lib\core\ui\navigation\main_scaffold_shell.dart:11:76 - illegal_character
+  error - Undefined class '?? - lib\core\ui\navigation\main_scaffold_shell.dart:11:76 - undefined_class
+  error - Expected to find ';' - lib\core\ui\navigation\main_scaffold_shell.dart:11:78 - expected_token
+  error - Illegal character '49688' - lib\core\ui\navigation\main_scaffold_shell.dart:11:78 - illegal_character
+  error - Expected to find ';' - lib\core\ui\navigation\main_scaffold_shell.dart:11:80 - expected_token
+  error - Illegal character '50630' - lib\core\ui\navigation\main_scaffold_shell.dart:11:80 - illegal_character
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\navigation\main_scaffold_shell.dart:11:80 - missing_const_final_var_or_type
+  error - Illegal character '51020' - lib\core\ui\navigation\main_scaffold_shell.dart:11:81 - illegal_character
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:11:82 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:11:86 - expected_executable
+  error - Unexpected text ';' - lib\core\ui\navigation\main_scaffold_shell.dart:11:87 - unexpected_token
+  error - Functions must have an explicit list of parameters - lib\core\ui\navigation\main_scaffold_shell.dart:13:9 - missing_function_parameters
+  error - A function body must be provided - lib\core\ui\navigation\main_scaffold_shell.dart:13:26 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:13:26 - expected_executable
+  error - A function body must be provided - lib\core\ui\navigation\main_scaffold_shell.dart:13:38 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:13:38 - expected_executable
+  error - Can't have modifier 'const' here - lib\core\ui\navigation\main_scaffold_shell.dart:14:11 - extraneous_modifier
+  error - Function-typed parameters can't specify 'const', 'final' or 'var' in place of a return type - lib\core\ui\navigation\main_scaffold_shell.dart:14:11 - function_typed_parameter_var
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\navigation\main_scaffold_shell.dart:15:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\navigation\main_scaffold_shell.dart:15:20 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\navigation\main_scaffold_shell.dart:16:28 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\navigation\main_scaffold_shell.dart:16:28 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\navigation\main_scaffold_shell.dart:17:21 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\navigation\main_scaffold_shell.dart:17:21 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\core\ui\navigation\main_scaffold_shell.dart:19:10 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:20:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:20:8 - expected_executable
+  error - Unexpected text ';' - lib\core\ui\navigation\main_scaffold_shell.dart:20:9 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:21:5 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:22:3 - expected_executable
+  error - The name 'ChatScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:25:11 - creation_with_non_type
+  error - The name 'MapScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:26:11 - creation_with_non_type
+  error - The name 'MainAppBar' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:34:21 - creation_with_non_type
+  error - The name 'HistoryDrawer' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:35:21 - creation_with_non_type
+  error - Undefined name '_selectedIndex' - lib\core\ui\navigation\main_scaffold_shell.dart:39:20 - undefined_identifier
+  error - The name 'Positioned' is defined in the libraries 'package:flutter/src/widgets/basic.dart (via package:flutter/material.dart)' and 'package:lifeand_care_app/features/tab2_map/map_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:42:17 - ambiguous_import
+  error - The function 'MainBottomNavBar' isn't defined - lib\core\ui\navigation\main_scaffold_shell.dart:49:28 - undefined_function
+  error - Undefined name '_selectedIndex' - lib\core\ui\navigation\main_scaffold_shell.dart:50:23 - undefined_identifier
+  error - The function 'setState' isn't defined - lib\core\ui\navigation\main_scaffold_shell.dart:51:27 - undefined_function
+  error - Undefined name '_selectedIndex' - lib\core\ui\navigation\main_scaffold_shell.dart:51:42 - undefined_identifier
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\navigation\main_scaffold_shell.dart:55:1 - expected_executable
+  error - The name 'ChatScreen' isn't a class - lib\core\ui\overlay\floating_chat_bubble.dart:29:26 - creation_with_non_type
+  error - The name 'Icon' is defined in the libraries 'package:flutter/src/widgets/icon.dart (via package:flutter/material.dart)' and 'package:lifeand_care_app/features/tab1_chat/chat_screen.dart' - lib\core\ui\overlay\floating_chat_bubble.dart:34:20 - ambiguous_import
+  error - Expected to find ';' - lib\core\ui\sidebar\history_drawer.dart:3:8 - expected_token
+  error - Illegal character '50508' - lib\core\ui\sidebar\history_drawer.dart:3:72 - illegal_character
+  error - Undefined class '?? - lib\core\ui\sidebar\history_drawer.dart:3:72 - undefined_class
+  error - Expected to find ';' - lib\core\ui\sidebar\history_drawer.dart:3:74 - expected_token
+  error - Illegal character '49688' - lib\core\ui\sidebar\history_drawer.dart:3:74 - illegal_character
+  error - Expected to find ';' - lib\core\ui\sidebar\history_drawer.dart:3:76 - expected_token
+  error - Illegal character '50630' - lib\core\ui\sidebar\history_drawer.dart:3:76 - illegal_character
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\sidebar\history_drawer.dart:3:76 - missing_const_final_var_or_type
+  error - Illegal character '51020' - lib\core\ui\sidebar\history_drawer.dart:3:77 - illegal_character
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:3:78 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:3:91 - expected_executable
+  error - Expected to find ';' - lib\core\ui\sidebar\history_drawer.dart:4:17 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name - lib\core\ui\sidebar\history_drawer.dart:4:17 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:4:22 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\sidebar\history_drawer.dart:5:24 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\sidebar\history_drawer.dart:5:24 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\sidebar\history_drawer.dart:6:27 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\sidebar\history_drawer.dart:6:27 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\sidebar\history_drawer.dart:7:29 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\sidebar\history_drawer.dart:7:29 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\core\ui\sidebar\history_drawer.dart:8:18 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:8:18 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:9:15 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:9:16 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:10:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:10:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:11:11 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:11:12 - expected_executable
+  error - Named parameters must be enclosed in curly braces ('{' and '}') - lib\core\ui\sidebar\history_drawer.dart:13:18 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported - lib\core\ui\sidebar\history_drawer.dart:13:18 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant - lib\core\ui\sidebar\history_drawer.dart:13:20 - non_constant_default_value
+  error - Methods can't be invoked in constant expressions - lib\core\ui\sidebar\history_drawer.dart:19:30 - const_eval_method_invocation
+  error - The name 'TextStyle' isn't a class - lib\core\ui\sidebar\history_drawer.dart:37:40 - creation_with_non_type
+  error - The name 'TextStyle' isn't a class - lib\core\ui\sidebar\history_drawer.dart:41:40 - creation_with_non_type
+  error - A function body must be provided - lib\core\ui\sidebar\history_drawer.dart:50:12 - missing_function_body
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:50:12 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:51:9 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:51:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:52:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:52:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:53:5 - expected_executable
+  error - Unexpected text ';' - lib\core\ui\sidebar\history_drawer.dart:53:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:54:3 - expected_executable
+  error - Expected a method, getter, setter or operator declaration - lib\core\ui\sidebar\history_drawer.dart:55:1 - expected_executable
+warning - The declaration '<unnamed>' isn't referenced - lib\data\services\history_view_model.dart:1:1 - unused_element
+  error - Expected to find ';' - lib\data\services\history_view_model.dart:1:8 - expected_token
+  error - Illegal character '50508' - lib\data\services\history_view_model.dart:1:39 - illegal_character
+  error - Undefined class '?? - lib\data\services\history_view_model.dart:1:39 - undefined_class

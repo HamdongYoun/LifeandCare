@@ -1,0 +1,66 @@
+﻿Resolving dependencies...
+Downloading packages...
+  flutter_lints 4.0.0 (6.0.0 available)
+  font_awesome_flutter 10.12.0 (11.0.0 available)
+  geolocator 12.0.0 (14.0.2 available)
+  geolocator_android 4.6.2 (5.0.2 available)
+  intl 0.19.0 (0.20.2 available)
+  lints 4.0.0 (6.1.0 available)
+< meta 1.17.0 (was 1.18.0) (1.18.2 available)
+< test_api 0.7.10 (was 0.7.11) (0.7.11 available)
+  vector_math 2.2.0 (2.3.0 available)
+Changed 2 dependencies!
+9 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing lifeand_care_app...                                   
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\app_theme.dart:23:25 - deprecated_member_use
+  error - The name 'StatusPulseIndicator' isn't a class - lib\core\app_theme.dart:28:40 - creation_with_non_type
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\status_indicator.dart:59:55 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\ui\footer\main_bottom_nav_bar.dart:28:33 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\ui\header\main_app_bar.dart:37:37 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\ui\header\main_app_bar.dart:39:56 - deprecated_member_use
+  error - Target of URI doesn't exist: '../../features/tab1_chat/chat_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../features/tab2_map/map_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../features/tab3_health/health_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:5:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../navigation/main_bottom_nav_bar.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:9:8 - uri_does_not_exist
+  error - The name 'ChatScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:85:11 - creation_with_non_type
+  error - The name 'MapScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:86:11 - creation_with_non_type
+  error - The name 'HealthScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:87:11 - creation_with_non_type
+  error - The method 'MainBottomNavBar' isn't defined for the type '_MainScaffoldShellState' - lib\core\ui\navigation\main_scaffold_shell.dart:109:28 - undefined_method
+  error - Arguments of a constant creation must be constant expressions - lib\features\tab1_chat\chat_screen.dart:61:30 - const_with_non_constant_argument
+  error - The getter 'notes_medical' isn't defined for the type 'Icons' - lib\features\tab1_chat\chat_screen.dart:61:36 - undefined_getter
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:118:37 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:131:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:133:65 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:170:52 - deprecated_member_use
+warning - Unused import: 'dart:ui' - lib\features\tab2_map\map_screen.dart:1:8 - unused_import
+   info - 'dart:html' is deprecated and shouldn't be used. Use package:web and dart:js_interop instead - lib\features\tab2_map\map_screen.dart:2:1 - deprecated_member_use
+warning - Unused import: 'dart:html' - lib\features\tab2_map\map_screen.dart:2:8 - unused_import
+warning - Unused import: '../../core/status_indicator.dart' - lib\features\tab2_map\map_screen.dart:7:8 - unused_import
+warning - Unused import: '../../core/ui/header/main_app_bar.dart' - lib\features\tab2_map\map_screen.dart:8:8 - unused_import
+  error - Target of URI doesn't exist: '../../core/ui/navigation/main_bottom_nav_bar.dart' - lib\features\tab2_map\map_screen.dart:9:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: '../../core/ui/navigation/history_drawer.dart' - lib\features\tab2_map\map_screen.dart:10:8 - uri_does_not_exist
+warning - Unused import: '../../core/ui/overlay/floating_chat_bubble.dart' - lib\features\tab2_map\map_screen.dart:11:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:54:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:58:47 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:108:51 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:146:39 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:82:66 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:43:51 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:147:72 - deprecated_member_use
+warning - Unused import: 'features/tab1_chat/chat_screen.dart' - lib\main.dart:1:8 - unused_import
+warning - Unused import: 'features/tab2_map/map_screen.dart' - lib\main.dart:3:8 - unused_import
+warning - Unused import: 'features/tab3_health/health_screen.dart' - lib\main.dart:5:8 - unused_import
+warning - Unused import: 'features/tab4_settings/settings_screen.dart' - lib\main.dart:7:8 - unused_import
+
+flutter.bat : 39 issues found. (ran in 5.1s)
+위치 줄:1 문자:1
++ & "C:\Users\함동윤\fvm\versions\stable\bin\flutter.bat" an
+alyze > analyz ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (39 issues f 
+   ound. (ran in 5.1s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

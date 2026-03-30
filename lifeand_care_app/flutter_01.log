@@ -1,0 +1,89 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d chrome --web-port 5000
+
+## exception
+
+ShaderCompilerException: ShaderCompilerException: Shader compilation of "C:\Users\함동윤\fvm\cache.git\packages\flutter\lib\src\material\shaders\ink_sparkle.frag" to "build\flutter_assets\shaders/ink_sparkle.frag" failed with exit code 3.
+
+
+
+```
+#0      ShaderCompiler.compileShader (package:flutter_tools/src/build_system/tools/shader_compiler.dart:232:9)
+<asynchronous suspension>
+#1      writeBundle.<anonymous closure> (package:flutter_tools/src/bundle_builder.dart:227:25)
+<asynchronous suspension>
+#2      Future.wait.<anonymous closure> (dart:async/future.dart:546:21)
+<asynchronous suspension>
+#3      writeBundle (package:flutter_tools/src/bundle_builder.dart:171:3)
+<asynchronous suspension>
+#4      WebDevFS.update (package:flutter_tools/src/isolated/devfs_web.dart:342:9)
+<asynchronous suspension>
+#5      ResidentWebRunner._updateDevFS (package:flutter_tools/src/isolated/resident_web_runner.dart:804:35)
+<asynchronous suspension>
+#6      ResidentWebRunner.run.<anonymous closure> (package:flutter_tools/src/isolated/resident_web_runner.dart:337:41)
+<asynchronous suspension>
+#7      asyncGuard.<anonymous closure> (package:flutter_tools/src/base/async_guard.dart:108:24)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel master, 3.43.0-1.0.pre-350, on Microsoft
+    Windows [Version 10.0.26200.8037], locale ko-KR) [2.5s]
+    [32m•[39m Flutter version 3.43.0-1.0.pre-350 on channel master at
+      C:\Users\함동윤\fvm\cache.git
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 36e327dd2b (2 days ago), 2026-03-29
+      22:17:11 -0400
+    [32m•[39m Engine revision 36e327dd2b
+    [32m•[39m Dart version 3.12.0 (build 3.12.0-300.0.dev)
+    [32m•[39m DevTools version 2.57.0-dev.0
+    [32m•[39m Feature flags: enable-web, enable-linux-desktop,
+      enable-macos-desktop, enable-windows-desktop,
+      enable-android, enable-ios, cli-animations,
+      enable-native-assets, enable-swift-package-manager,
+      omit-legacy-version-file, enable-lldb-debugging,
+      enable-uiscene-migration, enable-riscv64
+
+[32m[✓][39m Windows Version (Windows 11 or higher, 25H2, 2009) [4.0s]
+
+[33m[!][39m Android toolchain - develop for Android devices (Android SDK
+    version 35.0.0) [17.9s]
+    [32m•[39m Android SDK at C:\Users\함동윤\AppData\Local\Android\sdk
+    [32m•[39m Emulator version unknown
+    [31m✗[39m Flutter requires Android SDK 36 and the Android BuildTools
+      28.0.3
+      To update the Android SDK visit
+      https://flutter.dev/to/windows-android-setup for detailed
+      instructions.
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Chrome - develop for the web [176ms]
+    [32m•[39m Chrome at C:\Program
+      Files\Google\Chrome\Application\chrome.exe
+
+[32m[✓][39m Visual Studio - develop Windows apps (Visual Studio Community
+    2026 18.2.1) [174ms]
+    [32m•[39m Visual Studio at C:\Program Files\Microsoft Visual
+      Studio\18\Community
+    [32m•[39m Visual Studio Community 2026 version 18.2.11415.280
+    [32m•[39m Windows 10 SDK version 10.0.26100.0
+
+[32m[✓][39m Connected device (3 available) [3.3s]
+    [32m•[39m Windows (desktop) • windows • windows-x64    • Microsoft
+      Windows [Version 10.0.26200.8037]
+    [32m•[39m Chrome (web)      • chrome  • web-javascript • Google
+      Chrome 146.0.7680.167
+    [32m•[39m Edge (web)        • edge    • web-javascript • Microsoft
+      Edge 146.0.3856.84
+
+[32m[✓][39m Network resources [3.3s]
+    [32m•[39m All expected network resources are available.
+
+[33m![39m Doctor found issues in 1 category.
+```

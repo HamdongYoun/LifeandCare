@@ -1,0 +1,20 @@
+﻿import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:lifeand_care_app/data/services/history_view_model.dart'알 수 없음'score'알 수 없음'content'알 수 없음'遺꾩꽍 ?곗씠?곌? 遺議깊빀?덈떎.',
+      suggestions: List<String>.from(json['suggestions'알 수 없음'http://127.0.0.1:8000/report');
+      final resp = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'history': aggregateHistory}),
+      );
+      
+      if (resp.statusCode == 200) {
+        final data = jsonDecode(resp.body);
+        _report = HealthReportModel.fromJson(data);
+      }
+    } catch (e) {
+      print("[HealthVM] Data Stream Fetch failed: $e");
+    } finally {
+      _isLoading = false;
+      notifyListeners();

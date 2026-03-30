@@ -1,0 +1,55 @@
+﻿Analyzing lifeand_care_app...                                   
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\app_theme.dart:25:25 - deprecated_member_use
+  error - The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'.  - lib\core\app_theme.dart:43:16 - argument_type_not_assignable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\status_indicator.dart:59:55 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\ui\footer\main_bottom_nav_bar.dart:47:59 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\core\ui\header\main_app_bar.dart:15:16 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\ui\header\main_app_bar.dart:36:39 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:51:60 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab1_chat\chat_screen.dart:59:34 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab1_chat\chat_screen.dart:68:34 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab1_chat\chat_screen.dart:112:57 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab1_chat\chat_screen.dart:120:40 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab1_chat\chat_screen.dart:157:30 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab1_chat\chat_screen.dart:160:36 - undefined_identifier
+warning - Unused import: 'package:lifeand_care_app/data/services/history_view_model.dart' - lib\features\tab1_chat\chat_view_model.dart:4:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:35:45 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab2_map\map_screen.dart:48:34 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab2_map\map_screen.dart:51:40 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:96:49 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab2_map\map_screen.dart:109:36 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab2_map\map_screen.dart:143:18 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab2_map\map_screen.dart:156:18 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab2_map\map_screen.dart:162:48 - deprecated_member_use
+   info - 'desiredAccuracy' is deprecated and shouldn't be used. use settings parameter with AndroidSettings, AppleSettings, WebSettings, or LocationSettings - lib\features\tab2_map\map_view_model.dart:49:9 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:84:58 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:94:34 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:95:49 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:103:34 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:114:49 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:137:45 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:147:34 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:167:47 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:182:38 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:197:34 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:208:36 - undefined_identifier
+  error - Undefined name 'GoogleFonts' - lib\features\tab3_health\health_screen.dart:228:44 - undefined_identifier
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:43:51 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:142:72 - deprecated_member_use
+  error - Undefined name 'GoogleFonts' - lib\main.dart:49:20 - undefined_identifier
+  error - The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'.  - lib\main.dart:63:20 - argument_type_not_assignable
+
+flutter.bat : 39 issues found. (ran in 51.
+0s)
+위치 줄:1 문자:1
++ & "C:\Users\함동윤\fvm\versions\stable\bin\
+flutter.bat" analyze > analyz ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecifie 
+   d: (39 issues found. (ran in 51.0s):S  
+  tring) [], RemoteException
+    + FullyQualifiedErrorId : NativeComma 
+   ndError
+ 

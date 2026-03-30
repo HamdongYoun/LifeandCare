@@ -1,0 +1,107 @@
+﻿      appBar: AppBar(
+        title: const Text('?ㅼ젙 諛?沅뚰븳', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: Consumer<SettingsViewModel>(
+        builder: (context, vm, child) {
+          return ListView(
+            padding: const EdgeInsets.all(24),
+            children: [
+              // 1. User Profile Preview Card
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))
+                  ],
+                ),
+                child: vm.isLoggedIn 
+                  ? Column(
+                      children: [
+                        const Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Color(0xFF2563EB),
+                              child: Icon(Icons.person, color: Colors.white, size: 30),
+                            ),
+                            SizedBox(width: 20),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('?ъ슜?먮떂', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                                Text('premium@example.com', style: TextStyle(color: Colors.grey, fontSize: 13)),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          width: double.infinity,
+                          child: TextButton(
+                            onPressed: () => vm.logout(),
+                            child: const Text('濡쒓렇?꾩썐', style: TextStyle(color: Colors.redAccent)),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        const Text('濡쒓렇?몄씠 ?꾩슂?⑸땲 , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () => vm.mockLogin(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF2563EB),
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            child: const Text('濡쒓렇?명븯湲?),
+                          ),
+                        ),
+                      ],
+                    ),
+              ),
+              const SizedBox(height: 32),
+
+              const Text('?쒖뒪 沅뚰븳 諛 곕룞', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14)),
+              const SizedBox(height: 12),
+
+              // 2. Permission Settings (Toggle Style)
+              _buildSettingCard(
+                icon: Icons.location_on_outlined,
+                title: '?꾩튂 ?뺣낫 沅뚰븳',
+                subtitle: vm.isLocationEnabled ? '?뺤긽 ?묐룞 以? : '沅뚰븳 꾩슂?⑸땲 ,
+                isStatusOn: vm.isLocationEnabled,
+                onTap: () => vm.requestLocationPermission(),
+              ),
+              const SizedBox(height: 12),
+
+              _buildSettingCard(
+                icon: Icons.lan_outlined,
+                title: '諛깆뿏 AI ?붿쭊 ?곌껐',
+                subtitle: vm.isBackendConnected ? '?곌껐 ?깃났' : '?곌껐 吏 以?..',
+                isStatusOn: vm.isBackendConnected,
+                onTap: () => vm.checkPermissions(),
+              ),
+
+              const SizedBox(height: 32),
+              
+              const Text('吏 諛 뺣낫', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14)),
+              const SizedBox(height: 12),
+              
+              _buildSimpleItem(icon: Icons.policy_outlined, title: '媛쒖씤?뺣낫 泥섎━諛⑹묠'),
+              const SizedBox(height: 12),
+              _buildSimpleItem(icon: Icons.info_outline, title: '踰꾩쟾 ?뺣낫 v1.0.0'),
+            ],
+          );
+        },
+      ),
+    );
+  }

@@ -1,0 +1,79 @@
+﻿Analyzing lifeand_care_app...                                   
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\app_theme.dart:25:25 - deprecated_member_use
+  error - The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'.  - lib\core\app_theme.dart:43:16 - argument_type_not_assignable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\status_indicator.dart:59:55 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab1_chat/chat_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab2_map/map_screen.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab1_chat/chat_view_model.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:6:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab2_map/map_view_model.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:7:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/core/ui/header/main_app_bar.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:8:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/core/ui/footer/main_bottom_nav_bar.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:9:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/core/ui/sidebar/history_drawer.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:10:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/core/ui/overlay/floating_chat_bubble.dart' - lib\core\ui\navigation\main_scaffold_shell.dart:11:8 - uri_does_not_exist
+  error - Undefined class 'ChatViewModel' - lib\core\ui\navigation\main_scaffold_shell.dart:27:14 - undefined_class
+  error - The name 'ChatViewModel' isn't a type, so it can't be used as a type argument - lib\core\ui\navigation\main_scaffold_shell.dart:33:28 - non_type_as_type_argument
+  error - The name 'MapViewModel' isn't a type, so it can't be used as a type argument - lib\core\ui\navigation\main_scaffold_shell.dart:55:22 - non_type_as_type_argument
+  error - The name 'MapViewModel' isn't a type, so it can't be used as a type argument - lib\core\ui\navigation\main_scaffold_shell.dart:71:22 - non_type_as_type_argument
+  error - The name 'ChatScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:85:11 - creation_with_non_type
+  error - The name 'MapScreen' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:86:11 - creation_with_non_type
+  error - The name 'MainAppBar' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:94:21 - creation_with_non_type
+  error - The name 'HistoryDrawer' isn't a class - lib\core\ui\navigation\main_scaffold_shell.dart:95:21 - creation_with_non_type
+  error - Invalid constant value - lib\core\ui\navigation\main_scaffold_shell.dart:105:20 - invalid_constant
+  error - The method 'FloatingChatBubble' isn't defined for the type '_MainScaffoldShellState' - lib\core\ui\navigation\main_scaffold_shell.dart:105:20 - undefined_method
+  error - The method 'MainBottomNavBar' isn't defined for the type '_MainScaffoldShellState' - lib\core\ui\navigation\main_scaffold_shell.dart:109:28 - undefined_method
+  error - Target of URI doesn't exist: 'health_view_model.dart' - lib\features\tab3_health\health_screen.dart:3:8 - uri_does_not_exist
+  error - The name 'HealthViewModel' isn't a type, so it can't be used as a type argument - lib\features\tab3_health\health_screen.dart:24:20 - non_type_as_type_argument
+  error - The name 'HealthViewModel' isn't a type, so it can't be used as a type argument - lib\features\tab3_health\health_screen.dart:36:21 - non_type_as_type_argument
+  error - The property 'isLoading' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:38:16 - unchecked_use_of_nullable_value
+  error - The name 'HealthViewModel' isn't a type, so it can't be used as a type argument - lib\features\tab3_health\health_screen.dart:59:42 - non_type_as_type_argument
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab3_health\health_screen.dart:82:66 - deprecated_member_use
+  error - Unterminated string literal - lib\features\tab3_health\health_screen.dart:87:128 - unterminated_string_literal
+  error - Expected to find ',' - lib\features\tab3_health\health_screen.dart:88:25 - expected_token
+  error - Too many positional arguments: 1 expected, but 3 found - lib\features\tab3_health\health_screen.dart:88:25 - extra_positional_arguments_could_be_named
+  error - The named parameter 'healthStatus' isn't defined - lib\features\tab3_health\health_screen.dart:89:19 - undefined_named_parameter
+  error - Invalid constant value - lib\features\tab3_health\health_screen.dart:89:33 - invalid_constant
+  error - The property 'healthStatus' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:89:36 - unchecked_use_of_nullable_value
+  error - The named parameter 'statusColor' isn't defined - lib\features\tab3_health\health_screen.dart:90:19 - undefined_named_parameter
+  error - The property 'statusColor' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:90:35 - unchecked_use_of_nullable_value
+  error - The constructor being called isn't a const constructor - lib\features\tab3_health\health_screen.dart:92:41 - const_with_non_const
+  error - The property 'report' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:94:40 - unchecked_use_of_nullable_value
+  error - Expected to find ')' - lib\features\tab3_health\health_screen.dart:100:23 - expected_token
+  error - Unterminated string literal - lib\features\tab3_health\health_screen.dart:126:129 - unterminated_string_literal
+  error - Expected to find ')' - lib\features\tab3_health\health_screen.dart:127:29 - expected_token
+  error - The property 'report' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:136:32 - unchecked_use_of_nullable_value
+  error - The property 'report' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:140:34 - unchecked_use_of_nullable_value
+  error - The property 'report' can't be unconditionally accessed because the receiver can be 'null' - lib\features\tab3_health\health_screen.dart:145:35 - unchecked_use_of_nullable_value
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:43:51 - deprecated_member_use
+  error - Unterminated string literal - lib\features\tab4_settings\settings_screen.dart:78:113 - unterminated_string_literal
+  error - Expected to find ',' - lib\features\tab4_settings\settings_screen.dart:79:25 - expected_token
+  error - Too many positional arguments: 1 expected, but 3 found - lib\features\tab4_settings\settings_screen.dart:79:25 - extra_positional_arguments_could_be_named
+  error - Invalid constant value - lib\features\tab4_settings\settings_screen.dart:83:40 - invalid_constant
+  error - The constructor being called isn't a const constructor - lib\features\tab4_settings\settings_screen.dart:87:75 - const_with_non_const
+  error - Unterminated string literal - lib\features\tab4_settings\settings_screen.dart:89:56 - unterminated_string_literal
+  error - Expected to find ')' - lib\features\tab4_settings\settings_screen.dart:92:23 - expected_token
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\tab4_settings\settings_screen.dart:147:72 - deprecated_member_use
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab1_chat/chat_screen.dart' - lib\main.dart:1:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab1_chat/chat_view_model.dart' - lib\main.dart:2:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab2_map/map_screen.dart' - lib\main.dart:3:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab2_map/map_view_model.dart' - lib\main.dart:4:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/features/tab3_health/health_view_model.dart' - lib\main.dart:6:8 - uri_does_not_exist
+  error - Target of URI doesn't exist: 'package:lifeand_care_app/data/services/history_view_model.dart' - lib\main.dart:9:8 - uri_does_not_exist
+  error - Undefined name 'ApiConfig' - lib\main.dart:21:9 - undefined_identifier
+  error - The function 'HistoryViewModel' isn't defined - lib\main.dart:25:47 - undefined_function
+  error - The function 'ChatViewModel' isn't defined - lib\main.dart:26:53 - undefined_function
+  error - The name 'HistoryViewModel' isn't a type, so it can't be used as a type argument - lib\main.dart:26:80 - non_type_as_type_argument
+  error - The function 'MapViewModel' isn't defined - lib\main.dart:27:47 - undefined_function
+  error - The function 'HealthViewModel' isn't defined - lib\main.dart:28:53 - undefined_function
+  error - The name 'HistoryViewModel' isn't a type, so it can't be used as a type argument - lib\main.dart:28:82 - non_type_as_type_argument
+
+flutter.bat : 66 issues found. (ran in 2.1s)
+위치 줄:1 문자:1
++ & "C:\Users\함동윤\fvm\versions\stable\bin\flutter.bat"
+ analyze > analyz ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (66 issues
+ f    ound. (ran in 2.1s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

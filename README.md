@@ -46,7 +46,7 @@ python -m uvicorn main:app --reload
 
 ```env
 # Gemini AI
-GOOGLE_API_KEY=your_gemini_key
+GEMINI_API_KEY=your_gemini_key
 
 # 공공데이터포털 (HIRA, E-Gen)
 HIRA_API_KEY=your_portal_key

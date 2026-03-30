@@ -1,0 +1,17 @@
+﻿Analyzing lifeand_care_app...                                   
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\app_theme.dart:24:25 - deprecated_member_use
+  error - The name 'StatusPulseIndicator' isn't a class - lib\core\app_theme.dart:29:40 - creation_with_non_type
+  error - The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'.  - lib\core\app_theme.dart:42:16 - argument_type_not_assignable
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\core\status_indicator.dart:59:55 - deprecated_member_use
+
+flutter.bat : 4 issues found. (ran in 2.3s)
+위치 줄:1 문자:1
++ & "C:\Users\함동윤\fvm\versions\stable\bin\flutter.bat" an
+alyze > analyz ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (4 issues fo 
+   und. (ran in 2.3s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

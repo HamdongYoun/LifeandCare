@@ -1,0 +1,61 @@
+﻿import 'package:lifeand_care_app/features/tab1_chat/chat_screen.dart';
+import 'package:lifeand_care_app/features/tab1_chat/chat_view_model.dart';
+import 'package:lifeand_care_app/features/tab2_map/map_screen.dart';
+import 'package:lifeand_care_app/features/tab2_map/map_view_model.dart';
+import 'package:lifeand_care_app/features/tab3_health/health_screen.dart';
+import 'package:lifeand_care_app/features/tab3_health/health_view_model.dart';
+import 'package:lifeand_care_app/features/tab4_settings/settings_screen.dart';
+import 'package:lifeand_care_app/features/tab4_settings/settings_view_model.dart';
+import 'package:lifeand_care_app/data/services/history_view_model.dart';
+import 'package:lifeand_care_app/core/ui/navigation/main_scaffold_shell.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+/**
+ * [LifeAndCareApp]
+ * ?醫뤿탣?귐 곷 筌욊쑴 
+ * MultiProvider 퉸 ?袁⑸열 ?怨밴묶 雅뚯눘 랁 춳 獄?疫꿸퀡 깆뒭 놁뱽  쇱젟 뺣뼄.
+ */
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HistoryViewModel()),
+        ChangeNotifierProvider(create: (context) => ChatViewModel(context.read<HistoryViewModel>())),
+        ChangeNotifierProvider(create: (_) => MapViewModel()),
+        ChangeNotifierProvider(create: (context) => HealthViewModel(context.read<HistoryViewModel>())),
+        ChangeNotifierProvider(create: (_) => SettingsViewModel()),
+      ],
+      child: const LifeAndCareApp(),
+    ),
+  );
+}
+
+class LifeAndCareApp extends StatelessWidget {
+  const LifeAndCareApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Life & Care',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2563EB), // Premium Royal Blue
+          primary: const Color(0xFF2563EB),
+          secondary: const Color(0xFF5856D6),
+          surface: Colors.white,
+        ),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(fontFamily: 'Outfit', fontWeight: FontWeight.bold, letterSpacing: -0.5),
+          bodyLarge: TextStyle(fontFamily: 'Inter', fontSize: 16),
+          labelLarge: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.w600),
+        ),
+        useMaterial3: true,
+      ),
+      //   Refactored Entry Point
+      home: const MainScaffoldShell(),
+    );
+  }
+}
+
