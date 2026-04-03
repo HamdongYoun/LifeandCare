@@ -1,36 +1,14 @@
-# Flutter/Dart
-.dart_tool/
-.packages
-.pub-cache/
-.pub/
-build/
-ios/.generated/
-ios/Flutter/Generated.xcconfig
-ios/Flutter/flutter_export_environment.sh
-android/app/src/main/res/drawable-xhdpi/launch_background.png
-android/app/src/main/res/drawable-xhdpi/launch_image.png
+# [WHITELIST] Allow everything for broad inclusion push
+# Except for the 1GB file that GitHub rejects.
 
-# Security & Secrets
-.security/
-.env*
-*.key
-*.p12
-*.jks
-*.keystore
+# EXCLUDE (Large binary archives)
+flutter_windows_vsc.zip
 
-# IDEs
-.idea/
-.vscode/
-
-# Local Docs (optional)
-# .docs/
-# .coredocs/
-# .rags/
-
-# Python & Temporary Files
-__pycache__/
-*.pyc
-.pytest_cache/
-tmp/
-node_modules/
-dist/
+# The following were previously ignored but now ALLOWED as requested:
+# .dart_tool/
+# build/
+# .pub/
+# .idea/
+# .vscode/
+# __pycache__/
+# node_modules/

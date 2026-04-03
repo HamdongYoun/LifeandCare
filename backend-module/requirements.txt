@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-google-generative-ai
+google-generativeai  
+
 pydantic
 httpcore==1.0.2
 python-dotenv

@@ -56,3 +56,7 @@ GEMINI_API_KEY=your_gemini_key_here
 HIRA_API_KEY=your_hira_key_here
 EGEN_API_KEY=your_egen_key_here
 ```
+
+
+
+**탭간 이동도 구현행함**

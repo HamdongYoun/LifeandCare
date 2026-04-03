@@ -1,13 +1,14 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:lifeand_care_app/core/status_indicator.dart';
+import 'package:flutter/foundation.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF2563EB); // Royal Blue
   static const Color primaryDark = Color(0xFF1E40AF);
   static const Color secondary = Color(0xFFF5F7FB); // Soft grayish-blue background
-  static const Color accent = Color(0xFF5856D6);
-  static const Color textMain = Color(0xFF111827);
-  static const Color textSub = Color(0xFF6B7280);
+  static const Color accent = Color(0xFF2563EB);
+  static const Color textMain = Color(0xFF2563EB); // Updated: Overall Text Design
+  static const Color textSub = Color(0xFF60A5FA); // Updated: Lighter blue for muted text
   static const Color success = Color(0xFF10B981);
   static const Color cardBg = Colors.white;
 }
@@ -40,7 +41,7 @@ class AppStyles {
       surface: Colors.white,
     ),
     scaffoldBackgroundColor: AppColors.secondary,
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme(
       color: Colors.white,
       surfaceTintColor: Colors.white,
       elevation: 0,

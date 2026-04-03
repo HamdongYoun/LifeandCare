@@ -1,0 +1,1 @@
+:  C:\\YOON\\CSrepos\\aichat\\lifeand_care_app\\web\\index.html

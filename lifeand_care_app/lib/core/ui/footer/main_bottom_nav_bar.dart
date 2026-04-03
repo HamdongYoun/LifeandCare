@@ -13,7 +13,7 @@ class MainBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 72 + MediaQuery.of(context).padding.bottom,
+      height: 80 + MediaQuery.of(context).padding.bottom,
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -25,6 +25,7 @@ class MainBottomNavBar extends StatelessWidget {
           _buildNavItem(0, Icons.chat_bubble_outline_rounded, Icons.chat_bubble_rounded, '상담'),
           _buildNavItem(1, Icons.map_outlined, Icons.map_rounded, '의료기관'),
           _buildNavItem(2, Icons.analytics_outlined, Icons.analytics_rounded, '리포트'),
+
         ],
       ),
     );
@@ -32,7 +33,7 @@ class MainBottomNavBar extends StatelessWidget {
 
   Widget _buildNavItem(int index, IconData icon, IconData activeIcon, String label) {
     final isSelected = currentIndex == index;
-    final color = isSelected ? const Color(0xFF2563EB) : const Color(0xFF9CA3AF);
+    final color = isSelected ? const Color(0xFF2563EB) : const Color(0xFF3B82F6).withOpacity(0.5); // Unified Blue Palette
 
     return GestureDetector(
       onTap: () => onTap(index),

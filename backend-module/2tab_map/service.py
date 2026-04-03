@@ -47,7 +47,15 @@ class MapService:
                 
                 if option_key in route and len(route[option_key]) > 0:
                     path = route[option_key][0].get("path", [])
-                    return {"path": path, "summary": route[option_key][0].get("summary")}
+                    raw_summary = route[option_key][0].get("summary", {})
+                    # Flatten summary for frontend convenience
+                    summary = {
+                        "distance": raw_summary.get("distance", 0), # meters
+                        "duration": raw_summary.get("duration", 0), # milliseconds
+                        "departureTime": raw_summary.get("departureTime"),
+                        "bbox": raw_summary.get("bbox") # [minLng, minLat, maxLng, maxLat] for camera fit
+                    }
+                    return {"path": path, "summary": summary}
                 
                 return {"error": "Path not found in route response", "raw": res_data}
             else:

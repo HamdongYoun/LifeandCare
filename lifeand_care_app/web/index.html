@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="/">
+  <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Life & Care - AI Medical Consultation">
@@ -35,22 +35,26 @@
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
 
-  <!-- [ENGINE BRIDGE] FLUTTER LOADER v2 -->
+  <!-- [ENGINE BRIDGE] FLUTTER LOADER v3 (Premium Standard) -->
   <script src="flutter.js" defer></script>
   <script>
     window.addEventListener('load', function(ev) {
-      if (!_flutter) {
-        console.error("Flutter.js not found. Check build artifacts.");
-        return;
-      }
+      // 1. Initialize Loader
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
-          serviceWorkerVersion: null,
+          serviceWorkerVersion: null, // [SILENT] Disable SW for local debugging stability
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+          // 2. Build Engine
+          engineInitializer.initializeEngine({
+            renderer: "canvaskit", // [HIGH PERFORMANCE] CanvasKit renderer
+            useColorEmoji: true,
+          }).then(function(appRunner) {
+            // 3. Remove Loading Box BEFORE running to prevent race condition
             const loadingBox = document.getElementById('loading-box');
             if (loadingBox) loadingBox.remove();
+            
+            // 4. Fire!
             appRunner.runApp();
           });
         }

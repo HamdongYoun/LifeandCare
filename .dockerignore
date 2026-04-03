@@ -1,0 +1,23 @@
+# Ignore massive binaries and irrelevant stuff
+.git/
+.idea/
+.vscode/
+regacy/
+coredocs/
+tests/
+
+# IMPORTANT: Ensure build/web is NOT ignored (It must be copied!)
+# (By default build/ is often ignored, so we explicitly allow what we need)
+!lifeand_care_app/build/web/
+
+# Ignore intermediate flutter/dart raw files but keep the web artifacts
+lifeand_care_app/lib/
+lifeand_care_app/ios/
+lifeand_care_app/android/
+lifeand_care_app/test/
+lifeand_care_app/.dart_tool/
+
+# Clean bundle logs
+*.zip
+*.log
+*.txt

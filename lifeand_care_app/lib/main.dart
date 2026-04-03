@@ -1,4 +1,5 @@
-﻿import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,13 +7,21 @@ import 'package:provider/provider.dart';
 import 'package:lifeand_care_app/features/tab1_chat/chat_view_model.dart';
 import 'package:lifeand_care_app/features/tab2_map/map_view_model.dart';
 import 'package:lifeand_care_app/features/tab3_health/health_view_model.dart';
-import 'package:lifeand_care_app/features/tab4_settings/settings_view_model.dart';
 import 'package:lifeand_care_app/data/services/history_view_model.dart';
-
-// UI Shell
+import 'package:lifeand_care_app/core/ui/overlay/settings_view_model.dart';
 import 'package:lifeand_care_app/core/ui/navigation/main_scaffold_shell.dart';
+import 'package:lifeand_care_app/core/app_theme.dart';
+import 'package:lifeand_care_app/core/api_config.dart';
 
-void main() {
+
+void main() async {
+  // --- [HARNESS] Ensure Platform Bindings ---
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // --- [SYNC] Global Infrastructure Init ---
+  await NaverMapSdk.instance.initialize(clientId: 'g19msx7v4z');
+  await ApiConfig.init();
+
   runApp(
     MultiProvider(
       providers: [

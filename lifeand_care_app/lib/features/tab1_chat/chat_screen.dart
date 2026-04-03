@@ -1,7 +1,9 @@
-﻿import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'chat_view_model.dart';
+import 'package:lifeand_care_app/data/services/history_view_model.dart';
+import 'package:lifeand_care_app/core/app_theme.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -34,156 +36,351 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFF9FAFB),
+      width: double.infinity,
+      height: double.infinity,
+      color: const Color(0xFFF5F7FB), // LEGACY: --bg-gray mapping
       child: Column(
         children: [
-          // 1. Chat Messages Area
+          // 1. Chat Messages Area & Floating Button (Takes all available space)
           Expanded(
-            child: Consumer<ChatViewModel>(
-              builder: (context, vm, child) {
-                if (vm.messages.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(24),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF2563EB).withOpacity(0.05),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(Icons.chat_bubble_rounded, size: 48, color: Color(0xFF2563EB)),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          '무엇을 도와드릴까요?',
-                          style: GoogleFonts.inter(
-                            color: const Color(0xFF111827),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '증상이나 건강 고민을 말씀해주세요.',
-                          style: GoogleFonts.inter(
-                            color: const Color(0xFF6B7280),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  itemCount: vm.messages.length,
-                  itemBuilder: (context, index) {
-                    final msg = vm.messages[index];
-                    final isUser = msg.type == 'user';
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          if (!isUser) ...[
-                            const CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Color(0xFFE5E7EB),
-                              child: Icon(Icons.smart_toy_rounded, size: 20, color: Color(0xFF4B5563)),
-                            ),
-                            const SizedBox(width: 12),
-                          ],
-                          Flexible(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
-                              decoration: BoxDecoration(
-                                color: isUser ? const Color(0xFF2563EB) : Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: const Radius.circular(20),
-                                  topRight: const Radius.circular(20),
-                                  bottomLeft: Radius.circular(isUser ? 20 : 4),
-                                  bottomRight: Radius.circular(isUser ? 4 : 20),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.04),
-                                    blurRadius: 12,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: Text(
-                                msg.content,
-                                style: GoogleFonts.inter(
-                                  color: isUser ? Colors.white : const Color(0xFF1F2937),
-                                  fontSize: 15,
-                                  height: 1.5,
-                                  fontWeight: isUser ? FontWeight.w500 : FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                          if (isUser) const SizedBox(width: 8),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-          
-          // 2. Input Area
-          Container(
-            padding: EdgeInsets.fromLTRB(20, 12, 20, 12 + MediaQuery.of(context).padding.bottom),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              border: Border(top: BorderSide(color: Color(0xFFE5E7EB), width: 0.5)),
-            ),
-            child: Row(
+            child: Stack(
               children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF3F4F6),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: TextField(
-                      controller: _controller,
-                      onSubmitted: (_) => _sendMessage(),
-                      style: GoogleFonts.inter(fontSize: 15),
-                      decoration: InputDecoration(
-                        hintText: '질문을 입력하세요...',
-                        hintStyle: GoogleFonts.inter(color: const Color(0xFF9CA3AF)),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        border: InputBorder.none,
-                      ),
-                    ),
+                Positioned.fill(
+                  child: Consumer<ChatViewModel>(
+                    builder: (context, vm, child) {
+                      return ListView.builder(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.fromLTRB(20, 100, 20, 40),
+                        itemCount: vm.messages.length + (vm.isLoading ? 1 : 0),
+                        itemBuilder: (context, index) {
+                          if (index == vm.messages.length) {
+                            return _buildLoadingBubble();
+                          }
+                          return _buildMessageBubble(vm.messages[index]);
+                        },
+                      );
+                    },
                   ),
                 ),
-                const SizedBox(width: 12),
-                IconButton(
-                  onPressed: _sendMessage,
-                  iconSize: 44,
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                  icon: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF2563EB),
-                      shape: BoxShape.circle,
+                // [PUFFY SAUSAGE] Capsule Save Button (Floating Overlay UX)
+                Positioned(
+                  top: 20, // 🚀 Moved from bottom: 12 to top: 20
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Consumer<ChatViewModel>(
+                      builder: (context, vm, child) {
+                        if (vm.messages.length < 2) return const SizedBox.shrink();
+                        return GestureDetector(
+                          onTap: () => vm.saveSession(context.read<HistoryViewModel>()),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2563EB),
+                              borderRadius: BorderRadius.circular(100),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF2563EB).withOpacity(0.3),
+                                  blurRadius: 15,
+                                  offset: const Offset(0, 8),
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 18),
+                                const SizedBox(width: 10),
+                                Text(
+                                  '현재 상담 요약 저장',
+                                  style: GoogleFonts.inter(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    child: const Icon(Icons.arrow_upward_rounded, color: Colors.white, size: 24),
                   ),
                 ),
               ],
             ),
           ),
+          
+          // 2. Input Area (Fixed at the bottom)
+          Container(
+            padding: EdgeInsets.fromLTRB(16, 12, 16, 12 + MediaQuery.of(context).padding.bottom),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF3F4F6),
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    child: TextField(
+                      controller: _controller,
+                      maxLines: 4,
+                      minLines: 1,
+                      textInputAction: TextInputAction.send,
+                      onSubmitted: (_) => _sendMessage(),
+                      style: GoogleFonts.inter(fontSize: 16, color: const Color(0xFF111827)),
+                      decoration: InputDecoration(
+                        hintText: '무엇이든 물어보세요...',
+                        hintStyle: GoogleFonts.inter(color: const Color(0xFF9CA3AF)),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                _buildSendButton(),
+              ],
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: const Color(0xFF2563EB).withOpacity(0.05),
+              borderRadius: BorderRadius.circular(32),
+            ),
+            child: const Icon(Icons.rocket_launch_rounded, size: 48, color: Color(0xFF2563EB)),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'LIFE & CARE AI',
+            style: GoogleFonts.outfit(
+              color: const Color(0xFF2563EB),
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+              letterSpacing: -1,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+             '증상을 말씀해주시면 정밀 분석을 시작합니다.',
+            style: GoogleFonts.inter(
+              color: const Color(0xFF9CA3AF),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageBubble(ChatMessage msg) {
+    if (msg.isEmergency) return _buildEmergencyAlert(msg);
+    if (msg.isError) return _buildErrorBubble(msg);
+
+    final isUser = msg.isUser;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12), // Mapping gap: 12px
+      child: Column(
+        crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (!isUser) _buildBotAvatar(),
+              Flexible(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: isUser ? const Color(0xFF2563EB) : Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(20),
+                      topRight: const Radius.circular(20),
+                      bottomLeft: Radius.circular(isUser ? 20 : 4),
+                      bottomRight: Radius.circular(isUser ? 4 : 20),
+                    ),
+                    border: isUser ? null : Border.all(color: const Color(0xFF000000).withOpacity(0.05), width: 1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(isUser ? 0.2 : 0.05),
+                        blurRadius: 15,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (msg.isDanger && !isUser) _buildEmergencyBadge(),
+                      Text(
+                        msg.content,
+                        style: GoogleFonts.inter(
+                          color: isUser ? Colors.white : const Color(0xFF111827),
+                          fontSize: 15,
+                          height: 1.6,
+                          fontWeight: isUser ? FontWeight.w600 : FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBotAvatar() {
+    return Container(
+      margin: const EdgeInsets.only(right: 12),
+      width: 36,
+      height: 36,
+      decoration: BoxDecoration(
+        color: const Color(0xFFE5E7EB),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Icon(Icons.smart_toy_rounded, size: 20, color: Color(0xFF4B5563)),
+    );
+  }
+
+  Widget _buildEmergencyBadge() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.red.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Colors.red.withOpacity(0.5)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.error_outline_rounded, color: Colors.red, size: 14),
+          const SizedBox(width: 4),
+          Text(
+            '긴급 제언',
+            style: GoogleFonts.inter(color: Colors.red, fontSize: 11, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmergencyAlert(ChatMessage msg) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color(0xFFFEF2F2),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFFECACA)),
+      ),
+      child: Column(
+        children: [
+          const Icon(Icons.warning_amber_rounded, color: Color(0xFFDC2626), size: 32),
+          const SizedBox(height: 12),
+          Text(
+            msg.content,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(
+              color: const Color(0xFF991B1B),
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              height: 1.6,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorBubble(ChatMessage msg) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFEE2E2),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          msg.content,
+          style: GoogleFonts.inter(color: const Color(0xFF991B1B), fontSize: 13),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoadingBubble() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        children: [
+          _buildBotAvatar(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(4),
+              ),
+              boxShadow: [
+                BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10),
+              ],
+            ),
+            child: const SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFF2563EB)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSendButton() {
+    return GestureDetector(
+      onTap: _sendMessage,
+      child: Container(
+        width: 44,
+        height: 44,
+        decoration: const BoxDecoration(
+          color: Color(0xFF2563EB),
+          shape: BoxShape.circle,
+        ),
+        child: const Icon(Icons.arrow_upward_rounded, color: Colors.white, size: 24),
       ),
     );
   }

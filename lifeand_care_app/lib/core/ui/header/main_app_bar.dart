@@ -1,29 +1,36 @@
-﻿import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:lifeand_care_app/features/tab4_settings/settings_view_model.dart';
-import 'package:lifeand_care_app/features/tab4_settings/settings_screen.dart';
+import 'package:lifeand_care_app/core/ui/overlay/settings_view_model.dart';
+import 'package:lifeand_care_app/core/ui/overlay/components.dart';
 import 'package:lifeand_care_app/features/tab3_health/health_view_model.dart';
+import 'package:lifeand_care_app/core/ui/header/profile_island.dart';
+
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key});
+  final VoidCallback? onLogoTap;
+
+  const MainAppBar({super.key, this.onLogoTap});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        'Life & Care',
-        style: GoogleFonts.inter(
-          fontWeight: FontWeight.w700,
-          fontSize: 20,
-          color: const Color(0xFF111827),
-          letterSpacing: -0.5,
+      title: GestureDetector(
+        onTap: onLogoTap,
+        child: Text(
+          'Life & Care',
+          style: GoogleFonts.outfit(
+            fontWeight: FontWeight.w900,
+            fontSize: 22,
+            color: const Color(0xFF2563EB),
+            letterSpacing: -0.8,
+          ),
         ),
       ),
       leading: Padding(
         padding: const EdgeInsets.only(left: 12),
         child: IconButton(
-          icon: const Icon(Icons.sort_rounded, size: 28),
+          icon: const Icon(Icons.sort_rounded, color: Color(0xFF2563EB), size: 28),
           onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       ),
@@ -32,29 +39,27 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 12),
           child: Consumer<HealthViewModel>(
             builder: (context, vm, child) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: vm.statusColor.withOpacity(0.12),
+                color: vm.statusColor.withOpacity(0.08),
                 borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: vm.statusColor.withOpacity(0.6), width: 1.2),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: vm.statusColor,
-                      shape: BoxShape.circle,
-                    ),
+                  Icon(
+                    vm.healthStatus == "정상" ? Icons.favorite : Icons.circle,
+                    size: vm.healthStatus == "정상" ? 14 : 8,
+                    color: vm.statusColor,
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 6),
                   Text(
                     vm.healthStatus,
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                       color: vm.statusColor,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ],
@@ -62,6 +67,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
+        const LifeCareProfileIsland(),
       ],
     );
   }
