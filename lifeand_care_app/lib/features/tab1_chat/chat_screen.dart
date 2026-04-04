@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'chat_view_model.dart';
 import 'package:lifeand_care_app/data/services/history_view_model.dart';
-import 'package:lifeand_care_app/core/app_theme.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -160,44 +159,6 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: const Color(0xFF2563EB).withOpacity(0.05),
-              borderRadius: BorderRadius.circular(32),
-            ),
-            child: const Icon(Icons.rocket_launch_rounded, size: 48, color: Color(0xFF2563EB)),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            'LIFE & CARE AI',
-            style: GoogleFonts.outfit(
-              color: const Color(0xFF2563EB),
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
-              letterSpacing: -1,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-             '증상을 말씀해주시면 정밀 분석을 시작합니다.',
-            style: GoogleFonts.inter(
-              color: const Color(0xFF9CA3AF),
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildMessageBubble(ChatMessage msg) {
     if (msg.isEmergency) return _buildEmergencyAlert(msg);
     if (msg.isError) return _buildErrorBubble(msg);

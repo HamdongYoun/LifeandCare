@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 
 class LocationManager extends ChangeNotifier {
   static final LocationManager _instance = LocationManager._internal();
   factory LocationManager() => _instance;
   LocationManager._internal();
 
-  LatLng _currentPosition = const LatLng(37.5665, 126.9780); // Default: Seoul
-  LatLng get currentPosition => _currentPosition;
+  NLatLng _currentPosition = const NLatLng(37.5665, 126.9780); // Default: Seoul
+  NLatLng get currentPosition => _currentPosition;
 
   bool _isServiceEnabled = false;
   bool get isServiceEnabled => _isServiceEnabled;
@@ -29,7 +29,7 @@ class LocationManager extends ChangeNotifier {
 
       if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
         Position position = await Geolocator.getCurrentPosition();
-        _currentPosition = LatLng(position.latitude, position.longitude);
+        _currentPosition = NLatLng(position.latitude, position.longitude);
         notifyListeners();
       }
     } catch (e) {

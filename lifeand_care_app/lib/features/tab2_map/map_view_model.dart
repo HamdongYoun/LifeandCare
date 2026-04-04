@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:lifeand_care_app/core/app_theme.dart';
 import 'package:lifeand_care_app/core/api_config.dart';
 
 class HospitalModel {
@@ -158,12 +157,24 @@ class MapViewModel extends ChangeNotifier {
     );
   }
 
+  Future<void> searchHospitalsByCamera() async {
+    if (_mapController == null) return;
+    final cameraBody = await _mapController!.getCameraPosition();
+    _userPosition = cameraBody.target; // [SYNC] Center positioning
+    await searchHospitals();
+  }
+
   Future<void> searchHospitals([String? query]) async {
+    // [HARNESS] Basic guard
+    if (_isLoading) return;
+    
     _isLoading = true;
     notifyListeners();
 
     try {
       final url = Uri.parse('${ApiConfig.baseUrl}/map/hospitals?lat=${_userPosition.latitude}&lng=${_userPosition.longitude}&query=${query ?? ""}');
+      debugPrint("📡 Fetching Hospitals: $url");
+      
       final resp = await http.get(url).timeout(ApiConfig.timeout);
       
       if (resp.statusCode == 200) {

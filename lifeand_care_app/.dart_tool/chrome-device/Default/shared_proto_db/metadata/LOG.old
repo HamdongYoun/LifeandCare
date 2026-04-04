@@ -1,3 +1,2 @@
-2026/04/05-00:00:27.591 8ed8 Reusing MANIFEST C:\YOON\flutter_tools.51af9e00\flutter_tools_chrome_device.f145a0fc\Default\shared_proto_db\metadata/MANIFEST-000001
-2026/04/05-00:00:27.591 8ed8 Recovering log #3
-2026/04/05-00:00:27.592 8ed8 Reusing old log C:\YOON\flutter_tools.51af9e00\flutter_tools_chrome_device.f145a0fc\Default\shared_proto_db\metadata/000003.log 
+2026/04/05-02:29:29.656 f75c Creating DB C:\YOON\flutter_tools.6be5999c\flutter_tools_chrome_device.f7456508\Default\shared_proto_db\metadata since it was missing.
+2026/04/05-02:29:29.662 f75c Reusing MANIFEST C:\YOON\flutter_tools.6be5999c\flutter_tools_chrome_device.f7456508\Default\shared_proto_db\metadata/MANIFEST-000001

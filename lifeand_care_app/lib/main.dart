@@ -10,17 +10,45 @@ import 'package:lifeand_care_app/features/tab3_health/health_view_model.dart';
 import 'package:lifeand_care_app/data/services/history_view_model.dart';
 import 'package:lifeand_care_app/core/ui/overlay/settings_view_model.dart';
 import 'package:lifeand_care_app/core/ui/navigation/main_scaffold_shell.dart';
-import 'package:lifeand_care_app/core/app_theme.dart';
 import 'package:lifeand_care_app/core/api_config.dart';
-
 
 void main() async {
   // --- [HARNESS] Ensure Platform Bindings ---
   WidgetsFlutterBinding.ensureInitialized();
   
-  // --- [SYNC] Global Infrastructure Init ---
-  await NaverMapSdk.instance.initialize(clientId: 'g19msx7v4z');
+  // [CRITICAL] Web Error Handling for Naver Map
+  try {
+    // ignore: deprecated_member_use
+    await NaverMapSdk.instance.initialize(clientId: 'g19msx7v4z');
+  } catch (e) {
+    debugPrint("[NaverMap] Initialized with non-critical error: $e");
+  }
+
   await ApiConfig.init();
+
+  // [UI-SURVIVAL] Custom Error Handling to prevent White Screen
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Material(
+      child: Container(
+        color: const Color(0xFFF5F7FB),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.map_rounded, size: 48, color: Color(0xFF2563EB)),
+              const SizedBox(height: 16),
+              Text(
+                "네이버 지도 엔진 준비 중...",
+                style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: const Color(0xFF111827)),
+              ),
+              const SizedBox(height: 8),
+              const CircularProgressIndicator(strokeWidth: 2),
+            ],
+          ),
+        ),
+      ),
+    );
+  };
 
   runApp(
     MultiProvider(

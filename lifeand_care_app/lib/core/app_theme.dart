@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lifeand_care_app/core/status_indicator.dart';
-import 'package:flutter/foundation.dart';
 
 class AppColors {
   static const Color primary = Color(0xFF2563EB); // Royal Blue

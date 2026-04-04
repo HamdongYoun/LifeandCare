@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart'; // [NEW] Support Mouse Drag
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:lifeand_care_app/core/app_theme.dart';
-import 'package:lifeand_care_app/core/api_config.dart';
 import 'map_view_model.dart';
 
 class MapScreen extends StatefulWidget {
@@ -136,33 +135,68 @@ class _MapScreenState extends State<MapScreen> {
                 ),
                 child: Column(
                   children: [
-                    // Handle Bar
+                    // --- [PREMIUM-HANDLE] Interactive Grab Bar ---
                     GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onVerticalDragUpdate: (_) {}, 
+                      onTap: () {
+                        // [SMART-TOGGLE] Check current size and animate to target
+                        final currentSize = _sheetController.size;
+                        final targetSize = currentSize > 0.4 ? 0.32 : 0.85;
+                        _sheetController.animateTo(
+                          targetSize,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.fastOutSlowIn,
+                        );
+                      },
+                      onVerticalDragUpdate: (details) {
+                        final delta = details.primaryDelta! / MediaQuery.of(context).size.height;
+                        _sheetController.jumpTo(_sheetController.size - delta);
+                      },
                       child: Container(
                         width: double.infinity,
-                        color: Colors.transparent,
                         padding: const EdgeInsets.only(top: 14, bottom: 10),
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent, // [GHOST] Catch all drag & tap events
+                        ),
                         child: Center(
-                          child: Container(
-                            width: 48,
-                            height: 5,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: 52,
+                            height: 6,
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE5E7EB),
+                              color: const Color(0xFFD1D5DB),
                               borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        controller: scrollController,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
-                        itemCount: vm.allModels.isEmpty ? 1 : vm.allModels.length + 1,
-                        itemBuilder: (context, index) {
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(
+                          dragDevices: {
+                            PointerDeviceKind.touch,
+                            PointerDeviceKind.mouse, // [CRITICAL] Enable Mouse Drag
+                          },
+                          scrollbars: true, // [NEW] Ensure scrollbar exists
+                        ),
+                        child: Scrollbar(
+                          controller: scrollController, // [CRITICAL] Fix ScrollPosition error
+                          thumbVisibility: true, // [NEW] Always show for desktop/mouse
+                          thickness: 6,
+                          radius: const Radius.circular(10),
+                          child: ListView.builder(
+                            controller: scrollController,
+                            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                            padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
+                            itemCount: vm.allModels.isEmpty ? 1 : vm.allModels.length + 1,
+                            itemBuilder: (context, index) {
                           if (index == 0) {
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 20, top: 0),
@@ -186,9 +220,11 @@ class _MapScreenState extends State<MapScreen> {
                         },
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              );
+              ],
+            ),
+          );
             },
           ),
         ],
@@ -214,6 +250,7 @@ class _MapScreenState extends State<MapScreen> {
         consumeSymbolTapEvents: false,
       ),
       onMapReady: (controller) => vm.onMapReady(controller),
+      onCameraIdle: () => vm.searchHospitalsByCamera(), // [LIVE-FETCH]
     );
   }
 
@@ -285,8 +322,11 @@ class _MapScreenState extends State<MapScreen> {
           child: Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFF000000), width: 1.5),
+              border: Border.all(color: const Color(0xFFE5E7EB), width: 1.0),
               borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4))
+              ],
             ),
             child: Row(
               children: [

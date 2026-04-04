@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:lifeand_care_app/data/services/history_view_model.dart';
-import 'package:lifeand_care_app/core/app_theme.dart';
 import 'package:lifeand_care_app/core/api_config.dart';
 
 class ChatMessage {

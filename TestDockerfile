@@ -1,4 +1,0 @@
-FROM busybox
-COPY . /app
-RUN ls -la /app
-RUN ls -la /app/lifeand_care_app

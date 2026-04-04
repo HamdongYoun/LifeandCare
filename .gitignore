@@ -1,10 +1,17 @@
-# [WHITELIST] Allow everything for broad inclusion push
-# Except for the 1GB file that GitHub rejects.
+# [SECURITY] IGNORED PERSONAL FILES
+명령서.md
+backend-module/.env
+.env
+*.env
 
-# EXCLUDE (Large binary archives)
+# [EXCLUDE] LARGE & UNNECESSARY FILES
 flutter_windows_vsc.zip
+*.zip
+*.tar
+*.gz
+*.rar
 
-# The following were previously ignored but now ALLOWED as requested:
+# [DEBUG] ALLOWED BUILD ARTIFACTS (PER USER INSTRUCTION)
 # .dart_tool/
 # build/
 # .pub/
