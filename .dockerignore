@@ -11,7 +11,7 @@ tests/
 !lifeand_care_app/build/web/
 
 # Ignore intermediate flutter/dart raw files but keep the web artifacts
-lifeand_care_app/lib/
+# lifeand_care_app/lib/
 lifeand_care_app/ios/
 lifeand_care_app/android/
 lifeand_care_app/test/

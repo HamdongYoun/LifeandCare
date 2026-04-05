@@ -1,5 +1,5 @@
 # --- [STAGE 1] Build Frontend (Flutter Web) ---
-FROM ghcr.io/cirruslabs/flutter:stable AS build
+FROM ghcr.io/cirruslabs/flutter:3.24.5 AS build
 
 WORKDIR /app
 COPY . .
@@ -16,7 +16,7 @@ ENV PYTHONPATH=/app
 
 # [DEPENDENCIES] Install Backend Core
 COPY backend-module/requirements.txt ./
-RUN pip install --no-cache-dir -r backend-module/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # [ARTEFACT-SYNC] Import build results from the BUILD stage
 # Path: /app/lifeand_care_app/build/web (Matches main.py's expected directory)

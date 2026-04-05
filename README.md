@@ -4,6 +4,18 @@ AI 기반 증상 분석, 실시간 병원 검색, 개인 맞춤형 건강 리포
 
 ---
 
+
+1. git clone https://github.com/HamdongYoun/LifeandCare
+
+2. docker 키기 
+
+3. 
+backend-module/.env 파일 생성 (API 키 입력)
+4. docker build -t life-and-care .
+5. docker run -it -p 8000:8000 life-and-care
+
+
+
 ## 🏗️ 프로젝트 아키텍처 (Modular Clean Architecture)
 
 본 프로젝트는 도메인 중심의 모듈화를 통해 각 기능(상담, 지도, 건강)이 전용 로직과 스타일을 갖는 독립적인 구조를 지향합니다.
@@ -24,6 +36,13 @@ AI 기반 증상 분석, 실시간 병원 검색, 개인 맞춤형 건강 리포
 ---
 
 ## 🚀 빠른 시작 (Quick Start)
+1. **저장소 복제:** `git clone https://github.com/HamdongYoun/LifeandCare` 후 폴더로 이동합니다.
+2. **도커 실행:** Docker Desktop 또는 도커 엔진을 실행합니다.
+3. **환경 설정:** `backend-module/.env` 파일을 만들고 필수 API 키를 입력합니다.
+4. **이미지 빌드:** `docker build -t life-and-care .` 명령으로 이미지를 생성합니다.
+5. **컨테이너 구동:** `docker run -it -p 8000:8000 life-and-care` 명령으로 서버를 시작합니다. (접속: `http://localhost:8000`)
+
+---
 
 ### 1. 저장소 복제 및 이동
 ```bash
