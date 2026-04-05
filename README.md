@@ -3,16 +3,15 @@
 AI 기반 증상 분석, 실시간 병원 검색, 개인 맞춤형 건강 리포트를 제공하는 **수직 슬라이스 아키텍처(Vertical Slice Architecture)** 기반 의료 플랫폼입니다.
 
 ---
+## 🚀 빠른 시작 (Quick Start)
+1. **저장소 복제:** `git clone https://github.com/HamdongYoun/LifeandCare` 후 폴더로 이동합니다.
+2. **도커 실행:** Docker Desktop 또는 도커 엔진을 실행합니다.
+3. **환경 설정:** `backend-module/.env` 파일을 만들고 필수 API 키를 입력합니다.
+4. **이미지 빌드:** `docker build -t life-and-care .` 명령으로 이미지를 생성합니다.
+5. **컨테이너 구동:** `docker run -it -p 8000:8000 life-and-care` 명령으로 서버를 시작합니다. (접속: `http://localhost:8000`)
 
 
-1. git clone https://github.com/HamdongYoun/LifeandCare
 
-2. docker 키기 
-
-3. 
-backend-module/.env 파일 생성 (API 키 입력)
-4. docker build -t life-and-care .
-5. docker run -it -p 8000:8000 life-and-care
 
 
 
