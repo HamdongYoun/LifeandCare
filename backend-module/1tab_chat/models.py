@@ -1,10 +1,11 @@
 from pydantic import BaseModel
 
 class ChatRequest(BaseModel):
-    message: str
-    lat: float | None = None
-    lng: float | None = None
+    user_input: str
 
 class ChatResponse(BaseModel):
-    content: str
-    message_type: str # 'text', 'hospital_card', 'emergency'
+    stage: int
+    message: str
+    show_emergency_btn: bool
+    is_save_blocked: bool
+    model: str
