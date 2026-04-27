@@ -11,7 +11,6 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 
 # --- 1. 경로 설정 및 환경 변수 로드 ---
-# 현재 파일(main.py)은 backend-module 안에 있다고 가정.
 BACKEND_DIR = Path(__file__).resolve().parent 
 ROOT_DIR = BACKEND_DIR.parent
 ENV_PATH = BACKEND_DIR / ".env"
@@ -19,8 +18,8 @@ ENV_PATH = BACKEND_DIR / ".env"
 load_dotenv(dotenv_path=ENV_PATH, override=True)
 sys.path.append(str(BACKEND_DIR))
 
-# --- 2. 동적 임포트 (언더바 포함된 폴더명 대응) 
-#로직들을 연결합니다.
+# --- 2. 동적 임포트 (언더바 포함된 폴더명 대응) ---
+# 로직들을 안전하게 연결.
 chat_service = importlib.import_module("_1tab_chat.service")
 map_service = importlib.import_module("_2tab_map.service")
 health_router = importlib.import_module("_3tab_health.router").router
@@ -28,9 +27,11 @@ health_router = importlib.import_module("_3tab_health.router").router
 # --- 3. LIFESPAN: 비동기 클라이언트 관리 ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # 서버 기동 시 통신용 클라이언트 생성
     async with httpx.AsyncClient(timeout=httpx.Timeout(10.0, connect=5.0)) as client:
         app.state.client = client
         yield
+    # 서버 종료 시 자동으로 닫힘
 
 app = FastAPI(title="Life & Care Unified Platform", lifespan=lifespan)
 
@@ -45,16 +46,15 @@ app.add_middleware(
 
 # --- 5. 라우터 및 엔드포인트 통합 ---
 
-# [3번 탭] 리포트 라우터 연결
+# [3번 탭] 리포트 라우터 연결 (리스트 조회 및 저장 기능을 포함하는 router.py 연결)
 app.include_router(health_router, prefix="/api/v1/health", tags=["Health Report"])
 
-# [1번 탭] 채팅 엔드포인트 
+# [1번 탭] 채팅 엔드포인트
 @app.post("/api/v1/chat")
 async def chat_endpoint(request: Request):
     try:
         data = await request.json()
-        user_input = data.get("user_input", "") # Flutter 앱의 키값에 맞춤
-        # service.py의 analyze_and_chat 함수 호출
+        user_input = data.get("user_input", "")
         return chat_service.analyze_and_chat(user_input)
     except Exception as e:
         return {"stage": 1, "message": f"서버 오류: {str(e)}", "show_emergency_btn": False}
@@ -68,20 +68,22 @@ async def get_map_hospitals(category: str = None, lat: float = None, lng: float 
     except Exception as e:
         return {"count": 0, "hospitals": [], "error": str(e)}
 
-# --- 6. 네이버 지도 API Proxy (기존 코드 유지) ---
+# --- 6. 네이버 지도 API Proxy ---
 @app.get("/map-proxy/static")
 async def get_static_map(request: Request, lat: float, lng: float, zoom: int = 15):
     client_id = os.getenv("NAVER_MAP_CLIENT_ID")
     client_secret = os.getenv("NAVER_MAP_CLIENT_SECRET")
     url = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster"
-    params = {"center": f"{lng},{lat}", "level": zoom, "w": 600, "h": 400, "scale": 2, "markers": f"type:d|size:mid|pos:{lng} {lat}"}
+    params = {
+        "center": f"{lng},{lat}", "level": zoom, "w": 600, "h": 400, 
+        "scale": 2, "markers": f"type:d|size:mid|pos:{lng} {lat}"
+    }
     headers = {"X-NCP-APIGW-API-KEY-ID": client_id, "X-NCP-APIGW-API-KEY": client_secret}
     
     resp = await request.app.state.client.get(url, params=params, headers=headers)
     return Response(content=resp.content, media_type="image/png")
 
-# --- 7. 프론트엔드 서빙 (Flutter Web 빌드 파일) ---
-# Flutter 프로젝트의 build/web 폴더 위치를 지정하세요.
+# --- 7. 프론트엔드 서빙 (Flutter Web) ---
 FLUTTER_WEB_DIR = ROOT_DIR / "lifeand_care_app" / "build" / "web"
 
 if FLUTTER_WEB_DIR.exists():
