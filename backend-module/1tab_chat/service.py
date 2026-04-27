@@ -1,86 +1,118 @@
-import google.generativeai as genai
 import os
-from .models import ChatResponse
+import re
+import json
+import google.generativeai as genai
+from dotenv import load_dotenv
+from google.api_core import exceptions
+# 주의: 폴더 구조에 따라 프롬프트 파일 경로를 확인해야 함.
+# 1tab_chat 폴더 안에 prompts.py가 있다면 .prompts 로 호출
+from . import prompts  
 
-# --- 1. HARNESS: Strict Key Loading ---
-# 표준 영문 변수명(GEMINI_API_KEY)으로 복구
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if GEMINI_API_KEY:
-    # Always re-configure to ensure latest environment key is used
-    genai.configure(api_key=GEMINI_API_KEY)
+# 1. 환경 변수 및 API 설정
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# --- 2. Model Parameters (Official v2.5 Flash-Lite) ---
-PRIMARY_MODEL = 'gemini-2.5-flash-lite'
-SECONDARY_MODEL = 'gemini-2.5-flash'
-FALLBACK_MODEL = 'gemini-1.5-pro'
+# [임시용] 모델 스캔 함수
+def get_available_models():
+    available_list = []
+    try:
+        for m in genai.list_models():
+            if 'generateContent' in m.supported_generation_methods:
+                available_list.append(m.name)
+        preferred_order = ['gemini-3-flash-preview', 'gemini-2.5-flash', 'gemini-2.5-flash-lite']
+        final_list = []
+        for pref in preferred_order:
+            for model_name in available_list:
+                if pref in model_name:
+                    final_list.append(model_name)
+                    available_list.remove(model_name)
+        final_list.extend(available_list)
+        return list(dict.fromkeys(final_list))
+    except Exception:
+        return ['models/gemini-3-flash-preview']
 
-class ChatService:
-    @staticmethod
-    async def get_chat_response(message: str, lat: float = None, lng: float = None):
-        if not message.strip():
-            return ChatResponse(content="증상을 입력해주세요.", message_type="text")
+ACTIVE_MODELS = get_available_models()
 
-        base_prompt = """
-        당신은 전문 의료 로봇 'Life & Care'입니다. 
-        사용자의 증상을 분석하고 친절하게 상담하세요. 
-        규칙:
-        1. 무조건 한글로 답변하세요.
-        2. 답변 끝에 반드시 [HOSPITAL:추천진료과] 형식의 태그를 포함하세요 (예: [HOSPITAL:내과]).
-        3. 심각한 위급 상황으로 판단되면 [EMERGENCY] 태그를 붙이세요.
-        """
+# [임시용] 내부 DB 검색 및 연락처 로직
+def search_test_db(user_input):
+    try:
+        # 파일 경로가 프로젝트 루트라면 '../test_db.json' 등으로 수정이 필요할 수 있음.
+        if not os.path.exists('test_db.json'): return None
+        with open('test_db.json', 'r', encoding='utf-8') as f:
+            db = json.load(f)
+        for entry in db:
+            if entry.get('keyword') in user_input: return entry.get('info')
+    except: return None
+    return None
+
+def get_safety_contacts():
+    try:
+        if not os.path.exists('safety_contacts.json'): return "\n\n📞 자살예방 상담전화: 109"
+        with open('safety_contacts.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        lines = ["\n\n--- [긴급 도움 요청처] ---"]
+        for item in data.get('contacts', []):
+            lines.append(f"📞 {item['name']}: {item['number']} ({item['desc']})")
+        return "\n".join(lines)
+    except: return "\n\n📞 자살예방 상담전화: 109"
+
+# [핵심 함수] 분석 및 채팅 메인 로직
+def analyze_and_chat(user_input):
+    try:
+        clean_input = user_input.strip()
+        is_crisis_input = any(kw in clean_input.replace(" ", "") for kw in prompts.CRISIS_KEYWORDS)
+        db_info = None if is_crisis_input else search_test_db(clean_input)
         
-        if lat and lng:
-            base_prompt += f"\n현재 위치: 위도 {lat}, 경도 {lng}"
+        full_prompt = f"참고 데이터: {db_info}\n질문: {clean_input}" if db_info else clean_input
 
-        models_to_try = [PRIMARY_MODEL, SECONDARY_MODEL, FALLBACK_MODEL]
-        last_error = None
-        
-        for model_name in models_to_try:
+        response_text = ""
+        used_model_name = ""
+        for model_name in ACTIVE_MODELS:
             try:
-                # 최신 SDK 규격: Client와 함께 system_instruction 활용 (Official Guide)
-                model = genai.GenerativeModel(
-                    model_name=model_name,
-                    system_instruction="당신은 전문 의료 로봇 'Life & Care'입니다. 사용자의 증상을 분석하고 친절하게 상담하세요. 1. 무조건 한글로 답변하세요. 2. 답변 끝에 반드시 [HOSPITAL:추천진료과] 형식의 태그를 포함하세요. 3. 심각한 위급 상황으로 판단되면 [EMERGENCY] 태그를 붙이세요."
-                )
-                response = model.generate_content(message)
-                
-                if not response or not response.text:
-                    raise ValueError("Empty AI Response")
-                    
-                content = response.text
-                
-                # Determine message type from AI flags
-                msg_type = "text"
-                if "[EMERGENCY]" in content:
-                    msg_type = "emergency"
-                elif "[HOSPITAL:" in content:
-                    msg_type = "hospital_card"
-                    
-                return ChatResponse(content=content, message_type=msg_type)
-                
-            except Exception as e:
-                last_error = e
-                print(f"[Gemini Try Fail] Model: {model_name}, Error: {e}")
-                # Try next model unless it's a quota issue
-                if "429" in str(e) or "quota" in str(e).lower():
-                    break
-                continue
-
-        # --- 3. Robust Error Fallback ---
-        error_msg = str(last_error).lower() if last_error else ""
-        if "429" in error_msg or "quota" in error_msg:
-            return ChatResponse(
-                content="죄송합니다. 현재 AI 서버 접속이 많아 지연되고 있습니다. 잠시 후 시도해 주세요. [HOSPITAL:내과]",
-                message_type="hospital_card"
-            )
-        elif "api key not valid" in error_msg:
-            return ChatResponse(
-                content="시스템 키 인증 오류가 발생했습니다. (API Key Invalid). [HOSPITAL:내과]",
-                message_type="text"
-            )
+                model = genai.GenerativeModel(model_name=model_name, system_instruction=prompts.SYSTEM_PROMPT)
+                response = model.generate_content(full_prompt)
+                response_text = response.text
+                used_model_name = model_name
+                break
+            except: continue
         
-        # Generic Fail
-        return ChatResponse(
-            content="일시적인 통신 장애가 발생했습니다. 잠시 후 다시 증상을 말씀해주세요.",
-            message_type="text"
-        )
+        if not response_text: raise Exception("응답 실패")
+
+        # STAGE 파싱 로직 
+        stage_match = re.search(r"\{STAGE:\s*([1-4])\}", response_text)
+        stage_number = int(stage_match.group(1)) if stage_match else 1
+        if is_crisis_input 및 stage_number != 4: stage_number = 4
+
+        show_emergency_btn = (stage_number == 3)
+        is_save_blocked = (stage_number == 4)
+
+        normal_disclaimer = "본 답변은 참고용이며 전문가의 의견을 대신할 수 없습니다."
+        safety_disclaimer = "본 답변은 참고용이며 전문가의 의견을 대신할 수 없습니다. 사용자님의 소중한 생명을 지키기 위해 전문가에게 도움을 받아볼 것을 간곡히 권유드립니다."
+
+        if stage_number == 4 또는 not db_info:
+            response_text = response_text.replace("[🏛️]", "")
+            if normal_disclaimer in response_text:
+                main_content = response_text.split(normal_disclaimer)[0].strip()
+                if "[🤖]" not in main_content:
+                    main_content += "[🤖]" if main_content.endswith(".") else ".[🤖]"
+                response_text = f"{main_content}\n\n{normal_disclaimer}"
+            elif "[🤖]" not in response_text:
+                response_text = response_text.replace(".", ".[🤖]", 1) if "." in response_text else response_text + ".[🤖]"
+
+        if stage_number == 4:
+            contacts = get_safety_contacts()
+            response_text = response_text.replace(normal_disclaimer, f"{contacts}\n\n{safety_disclaimer}") if normal_disclaimer in response_text else response_text + f"\n\n{contacts}\n\n{safety_disclaimer}"
+        else:
+            if normal_disclaimer not in response_text: response_text += f"\n\n{normal_disclaimer}"
+
+        display_text = re.sub(r"\{STAGE:\s*[1-4]\}", "", response_text).strip()
+            
+        return {
+            "stage": stage_number, 
+            "message": display_text, 
+            "show_emergency_btn": show_emergency_btn,
+            "is_save_blocked": is_save_blocked,
+            "model": used_model_name 
+        }
+    except Exception as e:
+        return {"stage": 1, "message": f"🤖 오류 발생: {str(e)}", "show_emergency_btn": False, "is_save_blocked": False}
