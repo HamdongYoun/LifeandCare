@@ -6,7 +6,7 @@ from .service import save_report, get_all_reports
 router = APIRouter()
 
 # 리포트 저장 엔드포인트
-@router.post("/save", response_model=ReportSaveResponse)
+@router.post("/save", response_model=ReportSaveResponse) 
 async def save_report_endpoint(request: ReportSaveRequest):
     result = save_report(request.user_input, request.ai_response, request.stage)
     
