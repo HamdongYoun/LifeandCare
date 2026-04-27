@@ -1,4 +1,3 @@
-# _3tab_health/router.py
 from fastapi import APIRouter, HTTPException
 from typing import List
 from .models import ReportSaveRequest, ReportSaveResponse, ReportItem
