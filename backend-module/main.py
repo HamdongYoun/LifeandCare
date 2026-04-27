@@ -11,7 +11,7 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 
 # --- 1. 경로 설정 및 환경 변수 로드 ---
-# 현재 파일(main.py)은 backend-module 안에 있다고 가정합니다.
+# 현재 파일(main.py)은 backend-module 안에 있다고 가정.
 BACKEND_DIR = Path(__file__).resolve().parent 
 ROOT_DIR = BACKEND_DIR.parent
 ENV_PATH = BACKEND_DIR / ".env"
@@ -19,8 +19,8 @@ ENV_PATH = BACKEND_DIR / ".env"
 load_dotenv(dotenv_path=ENV_PATH, override=True)
 sys.path.append(str(BACKEND_DIR))
 
-# --- 2. 동적 임포트 (언더바 포함된 폴더명 대응) ---
-# 우리가 만든 로직들을 연결합니다.
+# --- 2. 동적 임포트 (언더바 포함된 폴더명 대응) 
+#로직들을 연결합니다.
 chat_service = importlib.import_module("_1tab_chat.service")
 map_service = importlib.import_module("_2tab_map.service")
 health_router = importlib.import_module("_3tab_health.router").router
@@ -48,7 +48,7 @@ app.add_middleware(
 # [3번 탭] 리포트 라우터 연결
 app.include_router(health_router, prefix="/api/v1/health", tags=["Health Report"])
 
-# [1번 탭] 채팅 엔드포인트 (우리가 만든 analyze_and_chat 연결)
+# [1번 탭] 채팅 엔드포인트 
 @app.post("/api/v1/chat")
 async def chat_endpoint(request: Request):
     try:
