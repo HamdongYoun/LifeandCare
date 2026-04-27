@@ -1,26 +1,24 @@
+# _3tab_health/router.py
 from fastapi import APIRouter, HTTPException
-from .models import ReportRequest, ReportResponse, SummaryRequest, SummaryResponse, SummarySessionRequest, SummarySessionResponse
-from .service import HealthService
+from typing import List
+from .models import ReportSaveRequest, ReportSaveResponse, ReportItem
+from .service import save_report, get_all_reports
 
 router = APIRouter()
 
-@router.post("/report", response_model=ReportResponse)
-async def report_endpoint(request: ReportRequest):
-    try:
-        return await HealthService.generate_report(request.history)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# 리포트 저장 엔드포인트
+@router.post("/save", response_model=ReportSaveResponse)
+async def save_report_endpoint(request: ReportSaveRequest):
+    result = save_report(request.user_input, request.ai_response, request.stage)
+    
+    if result["status"] == "blocked":
+        raise HTTPException(status_code=403, detail=result["message"])
+    elif result["status"] == "error":
+        raise HTTPException(status_code=500, detail=result["message"])
+        
+    return result
 
-@router.post("/summarize", response_model=SummaryResponse)
-async def summarize_endpoint(request: SummaryRequest):
-    try:
-        return await HealthService.summarize_condition(request.user_msg, request.ai_msg)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/summarize_session", response_model=SummarySessionResponse)
-async def summarize_session_endpoint(request: SummarySessionRequest):
-    try:
-        return await HealthService.summarize_session(request.history)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# 리포트 목록 조회 엔드포인트
+@router.get("/list", response_model=List[ReportItem])
+async def get_reports_endpoint():
+    return get_all_reports()
