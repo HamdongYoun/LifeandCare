@@ -1,11 +1,15 @@
-from fastapi import APIRouter
 from pydantic import BaseModel
+from typing import List, Optional
 
-class MapHospitalResponse(BaseModel):
+class HospitalResponse(BaseModel):
+    id: str
     name: str
+    address: str
+    category: str
     lat: float
     lng: float
-    addr: str
-    tel: str
-    dist_value: float
-    er_beds: str
+    distance: Optional[float] = None
+
+class HospitalListResponse(BaseModel):
+    count: int
+    hospitals: List[HospitalResponse]
