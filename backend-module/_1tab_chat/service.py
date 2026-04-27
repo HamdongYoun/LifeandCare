@@ -1,19 +1,30 @@
 import os
 import re
 import json
+import sys
 import google.generativeai as genai
 from dotenv import load_dotenv
 from google.api_core import exceptions
-# 주의: 폴더 구조에 따라 프롬프트 파일 경로를 확인해야 함.
-# 1tab_chat 폴더 안에 prompts.py가 있다면 .prompts 로 호출
-from . import prompts  
+from pathlib import Path
+
+# --- 프롬프트 경로 최적화 ---
+# backend-module 폴더를 시스템 경로에 추가하여 어디서든 prompts.py를 가져올 수 있게 합니다.
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.append(str(BACKEND_DIR))
+
+try:
+    import prompts
+except ImportError:
+    # 만약 위 방법이 실패할 경우 상대 경로로 시도
+    from . import prompts
 
 # 1. 환경 변수 및 API 설정
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# [임시용] 모델 스캔 함수
 def get_available_models():
+    """가용 모델 스캔 및 우선순위 정렬"""
     available_list = []
     try:
         for m in genai.list_models():
@@ -33,12 +44,13 @@ def get_available_models():
 
 ACTIVE_MODELS = get_available_models()
 
-# [임시용] 내부 DB 검색 및 연락처 로직
 def search_test_db(user_input):
+    """내부 DB 검색 로직 (main.py 위치 기준 경로)"""
     try:
-        # 파일 경로가 프로젝트 루트라면 '../test_db.json' 등으로 수정이 필요할 수 있음.
-        if not os.path.exists('test_db.json'): return None
-        with open('test_db.json', 'r', encoding='utf-8') as f:
+        # 파일이 main.py와 같은 위치에 있을 때
+        file_path = 'test_db.json'
+        if not os.path.exists(file_path): return None
+        with open(file_path, 'r', encoding='utf-8') as f:
             db = json.load(f)
         for entry in db:
             if entry.get('keyword') in user_input: return entry.get('info')
@@ -46,9 +58,11 @@ def search_test_db(user_input):
     return None
 
 def get_safety_contacts():
+    """위기 상황 연락처 로드"""
     try:
-        if not os.path.exists('safety_contacts.json'): return "\n\n📞 자살예방 상담전화: 109"
-        with open('safety_contacts.json', 'r', encoding='utf-8') as f:
+        file_path = 'safety_contacts.json'
+        if not os.path.exists(file_path): return "\n\n📞 자살예방 상담전화: 109"
+        with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         lines = ["\n\n--- [긴급 도움 요청처] ---"]
         for item in data.get('contacts', []):
@@ -56,10 +70,11 @@ def get_safety_contacts():
         return "\n".join(lines)
     except: return "\n\n📞 자살예방 상담전화: 109"
 
-# [핵심 함수] 분석 및 채팅 메인 로직
 def analyze_and_chat(user_input):
+    """분석 및 채팅 메인 로직"""
     try:
         clean_input = user_input.strip()
+        # CRISIS_KEYWORDS 매칭
         is_crisis_input = any(kw in clean_input.replace(" ", "") for kw in prompts.CRISIS_KEYWORDS)
         db_info = None if is_crisis_input else search_test_db(clean_input)
         
@@ -78,10 +93,13 @@ def analyze_and_chat(user_input):
         
         if not response_text: raise Exception("응답 실패")
 
-        # STAGE 파싱 로직 
+        # STAGE 파싱 (한글 연산자 오타 수정: 및 -> and / 또는 -> or)
         stage_match = re.search(r"\{STAGE:\s*([1-4])\}", response_text)
         stage_number = int(stage_match.group(1)) if stage_match else 1
-        if is_crisis_input 및 stage_number != 4: stage_number = 4
+        
+        # 강제 위기 단계 고정 (논리 연산자 수정)
+        if is_crisis_input 및 stage_number != 4: 
+            stage_number = 4
 
         show_emergency_btn = (stage_number == 3)
         is_save_blocked = (stage_number == 4)
@@ -89,6 +107,7 @@ def analyze_and_chat(user_input):
         normal_disclaimer = "본 답변은 참고용이며 전문가의 의견을 대신할 수 없습니다."
         safety_disclaimer = "본 답변은 참고용이며 전문가의 의견을 대신할 수 없습니다. 사용자님의 소중한 생명을 지키기 위해 전문가에게 도움을 받아볼 것을 간곡히 권유드립니다."
 
+        # 아이콘 보정 로직 (논리 연산자 수정)
         if stage_number == 4 또는 not db_info:
             response_text = response_text.replace("[🏛️]", "")
             if normal_disclaimer in response_text:
@@ -97,14 +116,23 @@ def analyze_and_chat(user_input):
                     main_content += "[🤖]" if main_content.endswith(".") else ".[🤖]"
                 response_text = f"{main_content}\n\n{normal_disclaimer}"
             elif "[🤖]" not in response_text:
-                response_text = response_text.replace(".", ".[🤖]", 1) if "." in response_text else response_text + ".[🤖]"
+                if "." in response_text:
+                    response_text = response_text.replace(".", ".[🤖]", 1)
+                else:
+                    response_text += ".[🤖]"
 
+        # 연락처 추가 로직
         if stage_number == 4:
             contacts = get_safety_contacts()
-            response_text = response_text.replace(normal_disclaimer, f"{contacts}\n\n{safety_disclaimer}") if normal_disclaimer in response_text else response_text + f"\n\n{contacts}\n\n{safety_disclaimer}"
+            if normal_disclaimer in response_text:
+                response_text = response_text.replace(normal_disclaimer, f"{contacts}\n\n{safety_disclaimer}")
+            else:
+                response_text += f"\n\n{contacts}\n\n{safety_disclaimer}"
         else:
-            if normal_disclaimer not in response_text: response_text += f"\n\n{normal_disclaimer}"
+            if normal_disclaimer not in response_text: 
+                response_text += f"\n\n{normal_disclaimer}"
 
+        # 시스템 태그 제거
         display_text = re.sub(r"\{STAGE:\s*[1-4]\}", "", response_text).strip()
             
         return {
