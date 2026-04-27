@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from .models import ReportSaveRequest, ReportSaveResponse, ReportItem
 from .service import save_report, get_all_reports
-
+ 
 router = APIRouter()
 
 # 리포트 저장 엔드포인트
