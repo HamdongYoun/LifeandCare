@@ -1,0 +1,44 @@
+from langchain_community.document_loaders import Document
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import SQLiteVSS
+import sqlite3
+
+# 1. 샘플 데이터
+disease_data = [
+    {"name": "감기", "symptoms": "기침, 콧물, 가벼운 발열, 인후통", "treatment": "휴식, 수분 섭취"},
+    {"name": "급성 장염", "symptoms": "설사, 복통, 구토, 미열", "treatment": "금식, 전해질 보충"}
+]
+
+texts = [f"질병명: {item['name']}\n증상: {item['symptoms']}\n치료: {item['treatment']}" for item in disease_data]
+metadatas = [{"disease": item['name']} for item in disease_data]
+
+# 2. 임베딩 모델 로드
+embeddings = HuggingFaceEmbeddings(
+    model_name="jhgan/ko-sroberta-multitask",
+    model_kwargs={'device': 'cpu'},
+    encode_kwargs={'normalize_embeddings': True}
+)
+
+# 3. SQLite DB 연결 및 벡터 테이블 생성
+db_file = "medical_chatbot.db" # 일반 테이블(사용자, 리포트 등)과 함께 쓸 DB 파일
+connection = sqlite3.connect(db_file)
+
+print("SQLite 벡터 DB 구축 중...")
+vector_db = SQLiteVSS.from_texts(
+    texts=texts,
+    embedding=embeddings,
+    metadatas=metadatas,
+    table="disease_vectors", # DB 내에 생성될 벡터 저장용 테이블 이름
+    db_connection=connection
+)
+print("구축 완료!\n")
+
+# 4. 검색 테스트
+user_query = "배가 너무 아프고 토할 것 같아요."
+results = vector_db.similarity_search(user_query, k=1)
+
+print(f"[질문] {user_query}")
+print(f"[검색 결과] {results[0].page_content}")
+
+# 작업이 끝나면 연결 종료
+connection.close()
